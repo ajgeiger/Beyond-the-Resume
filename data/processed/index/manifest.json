@@ -1,0 +1,48 @@
+{
+  "index_version": "d272655ade5d",
+  "fingerprint": "d272655ade5d4a90dca7f08544c01ac2b9ad85cab2a9697c322789dd6045ba7a",
+  "documents_hash": "fb084486b32e3d7a17eb7e442476e44353a6ad99cbe2aa1ed28e48dacce73559",
+  "documents": [
+    {
+      "name": "Resume",
+      "path": "resume.pdf",
+      "sha256": "e92f7f46c64f7c7359b6cc506be1712e31906d808156459cdd4f64753ae2a1ce"
+    },
+    {
+      "name": "Resume source text",
+      "path": "resume_build.py",
+      "sha256": "4b8b48d9b56b9dd6205c259a55aebf5b63912c03aae3a49860c85c337073eefb"
+    },
+    {
+      "name": "Portfolio site resume page",
+      "path": "portfolio_site_resume.py",
+      "sha256": "7261db6f0cc58f2421c83cadb6dedc76f9af54ef3303e24736b057bcd34b12bb"
+    },
+    {
+      "name": "Portfolio site README",
+      "path": "portfolio_site_readme.md",
+      "sha256": "168bd3528863370e388f858de17b65f805d2ee641d5e17582794012a789ebf20"
+    },
+    {
+      "name": "Headline Radar README",
+      "path": "headline_radar_readme.md",
+      "sha256": "ad928644a6b16044f2510a59fe961e200dd9f3bb169672927c1e84919536c4c7"
+    }
+  ],
+  "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+  "dimension": 384,
+  "chunking": {
+    "chunk_size_tokens": 160,
+    "chunk_overlap_tokens": 32,
+    "min_chunk_tokens": 8,
+    "duplicate_overlap": 0.8
+  },
+  "chunk_count": 50,
+  "pipeline_version": "3",
+  "built_at": "2026-11-19T12:05:40Z",
+  "source_counts": {
+    "Resume": 19,
+    "Portfolio site README": 15,
+    "Headline Radar README": 16
+  }
+}
