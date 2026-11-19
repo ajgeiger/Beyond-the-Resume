@@ -1,0 +1,402 @@
+[
+  {
+    "chunk_id": "resume-001",
+    "source": "Resume",
+    "section": "Name and current title",
+    "text": "ALEXANDER J. GEIGER Lead Applied AI Scientist Orlando, FL linkedin.com/in/ajgeiger • github.com/ajgeiger • kaggle.com/alexgeiger • goldenoakresearch.com",
+    "token_count": 50,
+    "position": 0
+  },
+  {
+    "chunk_id": "resume-002",
+    "source": "Resume",
+    "section": "Professional summary",
+    "text": "Applied AI scientist with 9+ years of experience designing and deploying machine learning systems that quantify customer value, forecast demand, and optimize pricing to maximize net revenue. Builds production MLOps frameworks in Databricks and MLflow for a global private aviation network and owns the model lifecycle from feature engineering, experimentation, and backtesting through deployment, monitoring, and governance. Works across commercial and technical teams to deliver dynamic pricing and forecasting across 100+ locations, protecting millions in margin.",
+    "token_count": 101,
+    "position": 1
+  },
+  {
+    "chunk_id": "resume-003",
+    "source": "Resume",
+    "section": "Technical skills",
+    "text": "Languages: Python, PySpark, SQL, R, MATLAB ML & Frameworks: PyTorch, LightGBM, XGBoost, CatBoost, Keras, scikit-learn, Spark ML, Hugging Face, Greykite, Chronos-2 Cloud & Tools: Databricks, Azure, Delta Lake, MLflow, Unity Catalog, Power BI, Optuna, GitHub Actions Domain Expertise: Revenue Management & Dynamic Pricing, Demand Forecasting, Behavioral Modeling, Constraint Optimization, A/B Testing, Monte Carlo Simulation, Markov Models, NLP",
+    "token_count": 123,
+    "position": 2
+  },
+  {
+    "chunk_id": "resume-004",
+    "source": "Resume",
+    "section": "Professional experience > Signature Aviation, Orlando, FL May 2022 to Present > Lead Applied AI Scientist Jul 2026 to Present",
+    "text": "Signature Aviation, Orlando, FL May 2022 to Present Lead Applied AI Scientist Jul 2026 to Present Report to the SVP of Advanced Analytics. Thousands of models in production across 100+ locations. Built and lead Signature Aviation's enterprise AI platform, a shared codebase and common repository that standardizes how data scientists across the organization develop, experiment with, and register models to Unity Catalog. It supports forecasting, behavioral modeling, NLP analysis, dynamic pricing, and MLOps governance from raw operational data through to production.",
+    "token_count": 105,
+    "position": 3
+  },
+  {
+    "chunk_id": "resume-005",
+    "source": "Resume",
+    "section": "Professional experience > Signature Aviation, Orlando, FL May 2022 to Present > Lead Applied AI Scientist Jul 2026 to Present",
+    "text": "It supports forecasting, behavioral modeling, NLP analysis, dynamic pricing, and MLOps governance from raw operational data through to production. Architected a multi-model forecasting platform with Chronos-2 (time-series foundation model), Greykite, and baseline autoregressive models behind a shared interface, including hybrid models that pair Greykite's holiday and event impact estimates with Chronos-2 forecasts. Established a governed MLOps lifecycle (Testing, Challenger, Champion, Retired) with models registered in Unity Catalog and all experimentation in MLflow, using rolling-origin backtesting, Optuna tuning with warm-start search spaces, and automated feature selection.",
+    "token_count": 143,
+    "position": 4
+  },
+  {
+    "chunk_id": "resume-006",
+    "source": "Resume",
+    "section": "Professional experience > Signature Aviation, Orlando, FL May 2022 to Present > Lead Applied AI Scientist Jul 2026 to Present",
+    "text": "Unity Catalog and all experimentation in MLflow, using rolling-origin backtesting, Optuna tuning with warm-start search spaces, and automated feature selection. Production forecasts select the most accurate approved model for each base and horizon from a scoreboard of WAPE, MAPE, MAE, RMSE, and bias. Reviewed 2,000+ tracked experiment runs and redirected effort away from low-impact settings. Put reliability and observability into production. Automated health checks (PASS/WARN/FAIL) flag stale, missing, or duplicated data, job runs are monitored through Databricks system tables, and CI/CD unit testing runs through GitHub Actions.",
+    "token_count": 139,
+    "position": 5
+  },
+  {
+    "chunk_id": "resume-007",
+    "source": "Resume",
+    "section": "Professional experience > Signature Aviation, Orlando, FL May 2022 to Present > Senior Data Scientist May 2022 to Jul 2026",
+    "text": "Senior Data Scientist May 2022 to Jul 2026 Developed the dynamic pricing system for hourly parking, which forecasts ramp demand at each FBO (fixed base operator) and converts those forecasts into demand-based price multipliers that stay constant for the day, with accuracy tracking for business users. Built a Customer Behavior Simulation and Pricing Optimization platform that models price sensitivity from historical purchases across fuel, ground power (GPU), and hourly parking, combining propensity modeling, expected-value simulation, and optimization to find segment-level pricing that maximizes net revenue while quantifying downside risk before deployment.",
+    "token_count": 124,
+    "position": 6
+  },
+  {
+    "chunk_id": "resume-008",
+    "source": "Resume",
+    "section": "Professional experience > Signature Aviation, Orlando, FL May 2022 to Present > Senior Data Scientist May 2022 to Jul 2026",
+    "text": "modeling, expected-value simulation, and optimization to find segment-level pricing that maximizes net revenue while quantifying downside risk before deployment. Designed and built a hangar capacity optimization and resident targeting engine that quantified standalone market value plus incremental network revenue from residency, supporting retain, replace, or vacate decisions and prioritizing the highest-value prospective residents under capacity constraints. Led the analytical evaluation of a major acquisition with an independent model forecasting base-level flight growth, net revenue, and risk, using seasonal patterns, growth assumptions, pricing scenarios, and capture risk to challenge aggressive projections. Implemented a risk-adjusted cost-plus pricing framework during a deicing supply crisis, run as an automated Databricks pricing algorithm with automated notifications, protecting millions in margin.",
+    "token_count": 160,
+    "position": 7
+  },
+  {
+    "chunk_id": "resume-009",
+    "source": "Resume",
+    "section": "Professional experience > Signature Aviation, Orlando, FL May 2022 to Present > Senior Data Scientist May 2022 to Jul 2026",
+    "text": "cost-plus pricing framework during a deicing supply crisis, run as an automated Databricks pricing algorithm with automated notifications, protecting millions in margin. Built a fraud analytics framework to detect TailWins loyalty program accrual patterns inconsistent with legitimate customer behavior after concerns about employee ID misuse, prioritizing suspicious accounts for investigation. Built a topic model (sentence-transformer embeddings with BERTopic) to find root-cause themes in credit invoice comments and a fuel-purchase propensity model (cross-validated LightGBM), and analyzed debit, credit, and rebill patterns to support revenue integrity.",
+    "token_count": 133,
+    "position": 8
+  },
+  {
+    "chunk_id": "resume-010",
+    "source": "Resume",
+    "section": "Professional experience > GHD, Buffalo, NY > Senior Data Scientist II Jul 2020 to May 2022",
+    "text": "GHD, Buffalo, NY Senior Data Scientist II Jul 2020 to May 2022 Led design, development, and deployment of machine learning software that automates and optimizes pipeline operations across major North American oil & gas networks, supporting three operating strategies: Efficiency, Scheduled Delivery, and High-Throughput. Engineered an automated control system with SCADA integration (or operator-advisory mode) to manage drag reducing agent (DRA) injection, pump activation, and target flow-rate optimization. Designed and implemented technology to mitigate pipeline pressure spikes by modeling transient wave propagation using Fourier transforms and deploying automated countermeasures that induced destructive interference, reducing stress and improving reliability. Owned the full lifecycle from architecture through production monitoring, enabling real-time decision support for pipeline controllers and improving operational control.",
+    "token_count": 160,
+    "position": 9
+  },
+  {
+    "chunk_id": "resume-011",
+    "source": "Resume",
+    "section": "Professional experience > VyStar Credit Union, Jacksonville, FL > Data Scientist Jun 2019 to Jul 2020",
+    "text": "VyStar Credit Union, Jacksonville, FL Data Scientist Jun 2019 to Jul 2020 Delivered a marketing propensity model (LightGBM in Databricks) for CD and credit card campaigns that raised member response rates about 10x (over 950% improvement). Built credit card engagement models to identify high-propensity members for new category-bonus rewards and developed member attrition prediction models using Azure and PySpark. Deployed demand forecasting models in Databricks and built Power BI dashboards to track KPIs and model lift. Earlier Experience",
+    "token_count": 112,
+    "position": 10
+  },
+  {
+    "chunk_id": "resume-012",
+    "source": "Resume",
+    "section": "Professional experience > Golden Oak Research, Founder & Data Scientist (part-time), Rochester, NY Aug 2017 to Jan 2020",
+    "text": "Golden Oak Research, Founder & Data Scientist (part-time), Rochester, NY Aug 2017 to Jan 2020 Founded an LLC to source, parse, and monetize hard-to-find public datasets; built an interactive analytics website (HTML5/JavaScript/Python/AWS) and developed a Markov Decision Process simulation in JavaScript.",
+    "token_count": 74,
+    "position": 11
+  },
+  {
+    "chunk_id": "resume-013",
+    "source": "Resume",
+    "section": "Professional experience > Soleo, Data Scientist Intern, Rochester, NY Mar 2018 to Jul 2018",
+    "text": "Soleo, Data Scientist Intern, Rochester, NY Mar 2018 to Jul 2018 Analyzed regional business density and routed-call performance using Python, Hadoop/Hive, and SQL to identify underserved markets and optimize routing paths and partner mixes.",
+    "token_count": 50,
+    "position": 12
+  },
+  {
+    "chunk_id": "resume-014",
+    "source": "Resume",
+    "section": "Professional experience > Howe & Rusling, Inc., Data Scientist Intern, Rochester, NY May 2016 to Aug 2016",
+    "text": "Howe & Rusling, Inc., Data Scientist Intern, Rochester, NY May 2016 to Aug 2016 Forecasted monetary policy impacts on factor markets; built Python data pipelines interfacing with Bloomberg APIs and performed statistical factor model analysis on Vanguard portfolios.",
+    "token_count": 52,
+    "position": 13
+  },
+  {
+    "chunk_id": "resume-015",
+    "source": "Resume",
+    "section": "Education > Syracuse University, Master of Science in Applied Data Science 2019 to 2022",
+    "text": "Syracuse University, Master of Science in Applied Data Science 2019 to 2022",
+    "token_count": 14,
+    "position": 14
+  },
+  {
+    "chunk_id": "resume-016",
+    "source": "Resume",
+    "section": "Education > Rochester Institute of Technology, Bachelor of Science in Data Science 2018",
+    "text": "Rochester Institute of Technology, Bachelor of Science in Data Science 2018",
+    "token_count": 12,
+    "position": 15
+  },
+  {
+    "chunk_id": "resume-017",
+    "source": "Resume",
+    "section": "Certifications",
+    "text": "Databricks Certified Context Engineer Associate Issued Jul 2026, expires Jul 2028",
+    "token_count": 18,
+    "position": 16
+  },
+  {
+    "chunk_id": "resume-018",
+    "source": "Resume",
+    "section": "Certifications > MIT Professional Education, Applied AI and Data Science Program Completed Jun 2026",
+    "text": "MIT Professional Education, Applied AI and Data Science Program Completed Jun 2026",
+    "token_count": 14,
+    "position": 17
+  },
+  {
+    "chunk_id": "resume-019",
+    "source": "Resume",
+    "section": "Competitions & achievements",
+    "text": "NFL Big Data Bowl (Kaggle) Spring 2020 Ranked 24th overall out of 2,000+ teams (11th among solo competitors); developed a CNN model using PyTorch to predict yards per carry while working full-time and completing master's coursework.",
+    "token_count": 54,
+    "position": 18
+  },
+  {
+    "chunk_id": "portfolio-site-readme-001",
+    "source": "Portfolio site README",
+    "section": "Alex Geiger, Lead Applied AI Scientist: Portfolio Site",
+    "text": "A personal portfolio website built in Plotly Dash. It covers my background and resume, and hosts analytics projects on real data that visitors can open and explore. The first project is the News Topic Explorer: 41,371 news articles grouped into 283 topics by Headline Radar, my own BERTopic style topic model, turned into a map you can walk from the whole corpus down to single headlines.",
+    "token_count": 79,
+    "position": 19
+  },
+  {
+    "chunk_id": "portfolio-site-readme-002",
+    "source": "Portfolio site README",
+    "section": "The website",
+    "text": "/. Page: Home. What it does: Short introduction, background (Lead Applied AI Scientist at Signature Aviation, the enterprise AI platform, Syracuse University), featured projects with numbers read from their data, how I work, about and contact links. /projects. Page: Projects. What it does: One card per registered project: screenshot, summary, tags, headline numbers, a link to the live page and to the code. /resume. Page: Resume. What it does: The full resume as a web document, section by section and word for word, with the PDF download. It prints cleanly. /projects/news-topic-explorer. Page: News Topic Explorer.",
+    "token_count": 140,
+    "position": 20
+  },
+  {
+    "chunk_id": "portfolio-site-readme-003",
+    "source": "Portfolio site README",
+    "section": "The website",
+    "text": "It prints cleanly. /projects/news-topic-explorer. Page: News Topic Explorer. What it does: A short case study (question, data, approach, key findings) above the live explorer. Every page shares a sticky header (Home, Projects, Resume, About, Contact), a footer with GitHub and Kaggle links, and a layout that adapts down to phone width. Numbers on the home and projects pages are computed from each project's data when the site starts, so they never drift from the app. The resume PDF is served from assets/files/Alexander_Geiger_Resume.pdf. The home page hero, the About section and the resume page link to it with \"Download resume (PDF)\".",
+    "token_count": 155,
+    "position": 21
+  },
+  {
+    "chunk_id": "portfolio-site-readme-004",
+    "source": "Portfolio site README",
+    "section": "The website",
+    "text": "The home page hero, the About section and the resume page link to it with \"Download resume (PDF)\". The resume page text lives in config/Resume.py (built from ResumeEmployer, ResumeRole and ResumeItem entries) and matches the PDF. The phone number and personal email are only in the PDF.",
+    "token_count": 73,
+    "position": 22
+  },
+  {
+    "chunk_id": "portfolio-site-readme-005",
+    "source": "Portfolio site README",
+    "section": "Add a project",
+    "text": "Projects come from ProjectRegistry. Adding one takes two steps and no changes to the home page, the projects index or the navigation: Write a page class that extends AbstractProjectPage. It needs layout(), register_callbacks(app) and highlights(), a short list of (value, label) numbers for its card. Add one Project entry to ProjectRegistry.default_projects with a slug, title, summary, question, data, approach, tags, a thumbnail in assets/images/, the repository link and a build_page function that returns the page. The project then appears on the home page, on /projects and at /projects/.",
+    "token_count": 141,
+    "position": 23
+  },
+  {
+    "chunk_id": "portfolio-site-readme-006",
+    "source": "Portfolio site README",
+    "section": "News Topic Explorer",
+    "text": "What is the news talking about, and how much coverage does each theme get?",
+    "token_count": 16,
+    "position": 24
+  },
+  {
+    "chunk_id": "portfolio-site-readme-007",
+    "source": "Portfolio site README",
+    "section": "News Topic Explorer > Why it matters",
+    "text": "Newsrooms, comms teams and analysts all face the same problem: thousands of headlines a day and no time to read them. A topic model can sort them, but a table of 283 keyword lists is not an answer anyone can act on. This explorer presents the model the way a consultant would present a topic analysis: One question, answered top down. The first screen shows the share of coverage each theme gets. Every click goes one level deeper until you reach real headlines. Honest numbers. Unassigned stories (40% of this corpus) and blank rows are shown, counted and explained instead of hidden. Time aware. News moves by the hour, so every selection comes with its trend, its source mix and a rising and fading view. Human labels.",
+    "token_count": 153,
+    "position": 25
+  },
+  {
+    "chunk_id": "portfolio-site-readme-008",
+    "source": "Portfolio site README",
+    "section": "News Topic Explorer > Why it matters",
+    "text": "Time aware. News moves by the hour, so every selection comes with its trend, its source mix and a rising and fading view. Human labels. Keyword names are a starting point. Analysts can rename them in the app and export the labels back to the pipeline.",
+    "token_count": 55,
+    "position": 26
+  },
+  {
+    "chunk_id": "portfolio-site-readme-009",
+    "source": "Portfolio site README",
+    "section": "News Topic Explorer > What it shows",
+    "text": "Summary cards. What you learn: Articles in view, how many landed in a topic, how many are unassigned, how many have no text. Each card opens that group. Topic graph. What you learn: A hub for the current group and cards for its branches, each with a share bar. Click to drill down. Zoom, fit and drag are built in. Side panel. What you learn: Type, count, share of all articles and of the group you came from, the keywords behind the label, the largest topics and example headlines tagged Representative or Sampled. Coverage over time. What you learn: Hourly, daily or weekly article counts for whatever is selected. Source mix. What you learn: Which outlets drive the selection. Rising and fading topics.",
+    "token_count": 155,
+    "position": 27
+  },
+  {
+    "chunk_id": "portfolio-site-readme-010",
+    "source": "Portfolio site README",
+    "section": "News Topic Explorer > What it shows",
+    "text": "Source mix. What you learn: Which outlets drive the selection. Rising and fading topics. What you learn: Change in share of coverage, recent window against the window before it. Click a bar to open the topic. Filters. What you learn: Date range, feed type and source. Every card, count and chart responds. Drilling into a theme. Each view opens the largest remaining group until it shows the chosen number of branches (6 by default). A single topic. The cards become example headlines. Clicking one shows the full title, summary, source, date and a link. Trend, source mix and rising topics for the selection. How to read this. Method notes and limits live one click away from every number.",
+    "token_count": 146,
+    "position": 28
+  },
+  {
+    "chunk_id": "portfolio-site-readme-011",
+    "source": "Portfolio site README",
+    "section": "News Topic Explorer > What it shows > Key numbers from the current fit",
+    "text": "Articles. Value: 41,371 rows from 4,689 sources, last loaded Nov 18, 2026 22:48 UTC. With usable text. Value: 41,277. Assigned to a topic. Value: 24,754 (60.0% of articles with text) across 283 topics. Unassigned (topic -1). Value: 16,523 (40.0%). Missing text (topic -2). Value: 94 (0.2% of all rows). Largest themes. Value: AI and Music cluster 6,545 (15.9%); GTA and China cluster 6,488 (15.7%); Police and Shooting 4,823 (11.7%). Largest topic.",
+    "token_count": 159,
+    "position": 29
+  },
+  {
+    "chunk_id": "portfolio-site-readme-012",
+    "source": "Portfolio site README",
+    "section": "News Topic Explorer > What it shows > Key numbers from the current fit",
+    "text": "Largest topic. Value: Topic 0, Man and Police (crime and arrests), 1,089 articles. Fastest riser. Value: Topic 2, Gen Z set to surpass baby boomers in management roles, +1.8 points of share in the last 6 hours.",
+    "token_count": 58,
+    "position": 30
+  },
+  {
+    "chunk_id": "portfolio-site-readme-013",
+    "source": "Portfolio site README",
+    "section": "Code highlights",
+    "text": "Read only by design. The app never fits or retrains anything. CacheBuilder reads the pipeline's CSV outputs, the pickled model attributes and the SQLite database (opened with mode=ro), joins them on article id with validate=\"many_to_one\" and writes small parquet tables. The app starts in about two seconds from that cache. A tree that reads well. Raw c-TF-IDF profiles share so few exact words that Ward linkage on them collapses into one long chain. TopicTreeBuilder first projects the profiles onto 30 latent themes (truncated SVD), scales them to unit length so distance follows cosine similarity, then merges with Ward.",
+    "token_count": 150,
+    "position": 31
+  },
+  {
+    "chunk_id": "portfolio-site-readme-014",
+    "source": "Portfolio site README",
+    "section": "Code highlights",
+    "text": "the profiles onto 30 latent themes (truncated SVD), scales them to unit length so distance follows cosine similarity, then merges with Ward. The top level went from one branch holding 93% of articles to six balanced themes. Names weighted by size. KeywordNamer combines each topic's keywords, weighted by article count, so larger topics drive the group name. A group never reuses a name from inside its own branch, so breadcrumbs always read as distinct steps. Pluggable data. Pages talk to AbstractDataSource. HeadlineRadarDataSource serves the cache, and FrameDataSource serves in memory tables for tests. A new dataset only needs a new source. Pluggable pages.",
+    "token_count": 155,
+    "position": 32
+  },
+  {
+    "chunk_id": "portfolio-site-readme-015",
+    "source": "Portfolio site README",
+    "section": "Code highlights",
+    "text": "A new dataset only needs a new source. Pluggable pages. PortfolioApp registers any list of AbstractPage objects as Dash pages inside one shared AppShell. Project pages come from ProjectRegistry, and the home and projects pages build their cards from the same registry. Fast callbacks. Filters are one boolean mask over 41k rows, branch counts are sums over precomputed topic lists, and a full view renders in about 30 ms. Small, readable classes. One class per file, named after the file. Analytics classes have no Dash imports, so they are easy to test and reuse.",
+    "token_count": 126,
+    "position": 33
+  },
+  {
+    "chunk_id": "headline-radar-readme-001",
+    "source": "Headline Radar README",
+    "section": "Headline Radar",
+    "text": "Headline Radar pulls live news headlines from GDELT and seven RSS feeds into a local database, then finds the topics in them with a topic model I wrote from scratch. Every 15 minutes there are thousands of new headlines. Headline Radar groups them into a few hundred readable topics, names each one with keywords, and shows how the topics relate. See the full walkthrough: Topic model notebook How to read this chart: each row on the right is a topic, with its top keywords and its number of articles. Lines join topics that use similar words. The further left two branches meet, the less alike they are, so pairs that join close to the right are the most similar.",
+    "token_count": 142,
+    "position": 34
+  },
+  {
+    "chunk_id": "headline-radar-readme-002",
+    "source": "Headline Radar README",
+    "section": "Headline Radar",
+    "text": "The further left two branches meet, the less alike they are, so pairs that join close to the right are the most similar. In this run, the Ukraine and Russia topic sits next to the Gaza and Israel topic, and NFL joins college football (CFP, Notre Dame). The closest pair is crashes and injuries next to police, arrests, and charges. Stock market headlines sit beside Black Friday and iPhone deals. The chart covers 41,277 articles and 283 topics.",
+    "token_count": 95,
+    "position": 35
+  },
+  {
+    "chunk_id": "headline-radar-readme-003",
+    "source": "Headline Radar README",
+    "section": "Why it matters",
+    "text": "Most organizations have more free text than anyone can read. Topic modeling turns that text into a short list of themes you can count, track, and act on. With news, that means you can: Spot new stories and market-moving themes early, as a new topic appears or grows. Track how coverage of a company, sector, or region changes from week to week. Route and triage a large stream of headlines to the right people. The engine does not know anything about news. Point it at any column of short texts and it works the same way. Good fits are support tickets, customer feedback, invoice or claim notes, and survey responses.",
+    "token_count": 133,
+    "position": 36
+  },
+  {
+    "chunk_id": "headline-radar-readme-004",
+    "source": "Headline Radar README",
+    "section": "What this shows",
+    "text": "I am a Lead Applied AI Scientist. At Signature Aviation I built the enterprise AI platform, covering data engineering, forecasting, dynamic pricing, and MLOps governance. This project shows the same habits on open data. My own BERTopic-style model, not a black box. Sentence embeddings with attention-mask mean pooling, UMAP to reduce them, HDBSCAN to cluster them, and c-TF-IDF to name the topics. Each step is a small, readable method. A loader you can rerun safely. Each article id is the SHA-256 of its URL, so reloads never add duplicates. A watermark per source means each run only pulls new data. Clear handling of edge cases.",
+    "token_count": 155,
+    "position": 37
+  },
+  {
+    "chunk_id": "headline-radar-readme-005",
+    "source": "Headline Radar README",
+    "section": "What this shows",
+    "text": "A watermark per source means each run only pulls new data. Clear handling of edge cases. Topic -1 means a text did not fit any topic. Topic -2 means the text was blank. The two are never mixed. Honest predictions. For each text, transform_with_status says whether it was in the training data (seen), was predicted (new), or was blank. Safe joins. TopicJoiner adds topic ids to a table without ever adding rows, and it raises an error when the data has drifted from the fitted model. Diagnostics you can check. get_fit_diagnostics shows how cluster sizes changed after identical texts were given one shared topic. The right size of tools.",
+    "token_count": 145,
+    "position": 38
+  },
+  {
+    "chunk_id": "headline-radar-readme-006",
+    "source": "Headline Radar README",
+    "section": "What this shows",
+    "text": "Diagnostics you can check. get_fit_diagnostics shows how cluster sizes changed after identical texts were given one shared topic. The right size of tools. pandas and SQLite instead of Spark and a database server, because the data fits on one machine. Tested on real data. 41,277 articles became 283 topics, with 40% left as outliers. The full run took about 3.5 minutes on CPU. Some topics pick up publisher boilerplate, such as \"targeted news service\". The example texts for each topic make those easy to spot and relabel.",
+    "token_count": 119,
+    "position": 39
+  },
+  {
+    "chunk_id": "headline-radar-readme-007",
+    "source": "Headline Radar README",
+    "section": "Code highlights",
+    "text": "TextEmbedder builds sentence embeddings straight from the raw transformer output. It averages token vectors with the attention mask so padding never counts, then scales each vector to length 1. It needs no sentence-transformers package and can save and reload the model for offline use. TopicModel is my own BERTopic-style pipeline: UMAP, HDBSCAN, and class-based TF-IDF. Copies of the same text vote on one shared topic, and topics that shrink below the minimum size after the vote are pruned again. It tells seen texts from new ones, predicts new ones with HDBSCAN approximate_predict, and reports fit diagnostics.",
+    "token_count": 143,
+    "position": 40
+  },
+  {
+    "chunk_id": "headline-radar-readme-008",
+    "source": "Headline Radar README",
+    "section": "Code highlights",
+    "text": "It tells seen texts from new ones, predicts new ones with HDBSCAN approximate_predict, and reports fit diagnostics. TopicHierarchyPlot compares topics by the cosine distance between their c-TF-IDF vectors and links them with Ward linkage. The Plotly dendrogram shows the combined keywords at every merge point when you hover. TopicJoiner joins topic ids back onto a table by exact text. It checks that the join keeps the row count, gives blank text -2, and raises an error on conflicting ids or on text the model has never seen, which is a sign of drift.",
+    "token_count": 132,
+    "position": 41
+  },
+  {
+    "chunk_id": "headline-radar-readme-009",
+    "source": "Headline Radar README",
+    "section": "Code highlights",
+    "text": "count, gives blank text -2, and raises an error on conflicting ids or on text the model has never seen, which is a sign of drift. TopicExplorer writes one self-contained HTML page: a 2D UMAP map of every unique text colored by topic, a bar chart of topic sizes, and a table of keywords and example texts. It works offline. GdeltLoader and RssLoader share one base class, NewsLoader, that logs every run and advances the watermark only after a successful load. The GDELT loader walks the 15-minute files from the last watermark, saves progress after each file, and retries a file on the next run if it is not published yet.",
+    "token_count": 154,
+    "position": 42
+  },
+  {
+    "chunk_id": "headline-radar-readme-010",
+    "source": "Headline Radar README",
+    "section": "Code highlights",
+    "text": "15-minute files from the last watermark, saves progress after each file, and retries a file on the next run if it is not published yet. Files still missing after a 45-minute grace period are skipped.",
+    "token_count": 45,
+    "position": 43
+  },
+  {
+    "chunk_id": "headline-radar-readme-011",
+    "source": "Headline Radar README",
+    "section": "How the topic model works",
+    "text": "models/TopicModel.py works on any list of short texts. Embed each unique text with TextEmbedder (MiniLM). Reduce the embeddings to 5 dimensions with UMAP. Give identical texts the same topic. Move any topic smaller than min_topic_size to the outliers. Number topics by size, so topic 0 is the largest. Describe each topic with c-TF-IDF keywords and three example texts. Texts from the fit data get their fitted topic back. New texts are placed with HDBSCAN approximate_predict. The model only knows the data it was fit on, so refit it as new headlines arrive. TopicJoiner adds a topic_id column to a pandas DataFrame by exact text match.",
+    "token_count": 158,
+    "position": 44
+  },
+  {
+    "chunk_id": "headline-radar-readme-012",
+    "source": "Headline Radar README",
+    "section": "How the topic model works",
+    "text": "TopicJoiner adds a topic_id column to a pandas DataFrame by exact text match. It never adds rows and gives blank text -2. It raises an error if one text has two topic ids, or if a text is missing from the lookup, which means the model needs a refit.",
+    "token_count": 63,
+    "position": 45
+  },
+  {
+    "chunk_id": "headline-radar-readme-013",
+    "source": "Headline Radar README",
+    "section": "Database design",
+    "text": "data/headline_radar.db is a SQLite file with three tables. The schema lives in utils/storage/Database.py. The tables are linked by the source name (gdelt or rss). These links are by value only. There are no foreign key constraints. No duplicates on reload. articles.id is the SHA-256 of the URL, and inserts use INSERT OR IGNORE, so rerunning a load skips articles that are already stored. Incremental loads. watermarks keeps one high-water mark per source. The next run starts from it and only pulls new data. An audit log.",
+    "token_count": 136,
+    "position": 46
+  },
+  {
+    "chunk_id": "headline-radar-readme-014",
+    "source": "Headline Radar README",
+    "section": "Database design",
+    "text": "Incremental loads. watermarks keeps one high-water mark per source. The next run starts from it and only pulls new data. An audit log. load_runs gets one row per run, with its status, counts fetched, inserted, and skipped, the high-water mark it reached, and any error. Blanks stay blank. Missing titles or descriptions are stored as NULL, and the row is kept. Zero setup. SQLite needs no server. Timestamps are stored as UTC text and the SQL is plain, so moving to Postgres later is simple.",
+    "token_count": 119,
+    "position": 47
+  },
+  {
+    "chunk_id": "headline-radar-readme-015",
+    "source": "Headline Radar README",
+    "section": "Data source notes",
+    "text": "GDELT data comes from the 15-minute GKG files advertised by https://data.gdeltproject.org/gdeltv2/lastupdate.txt. Titles are read from the GKG PAGE_TITLE extras field; a precise publish time is used when PAGE_PRECISEPUBTIMESTAMP is present, otherwise the 15-minute file time. GKG does not include article descriptions, so those are stored as NULL. Files are downloaded over HTTPS; the HTTP URLs in lastupdate.txt often return 500. The very newest file listed in lastupdate can 404 for a short time and is retried on the next run.",
+    "token_count": 144,
+    "position": 48
+  },
+  {
+    "chunk_id": "headline-radar-readme-016",
+    "source": "Headline Radar README",
+    "section": "Data source notes",
+    "text": "The very newest file listed in lastupdate can 404 for a short time and is retried on the next run. The GDELT DOC 2.0 API also exposes titles, but it rate-limits to one request every five seconds and, during setup, frequently returned HTTP 429 or an empty JSON object, so it is not used here. RSS feeds included here: BBC News, NPR News, CNBC Top Stories, Guardian Business, MarketWatch, NYT World, and Al Jazeera. Feeds that did not respond during setup (Yahoo Finance 404, Politico 403, CNN SSL error) were left out.",
+    "token_count": 133,
+    "position": 49
+  }
+]

@@ -1,0 +1,233 @@
+[
+  {
+    "question": "What is his current role?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "Name and current title",
+      "Lead Applied AI Scientist"
+    ]
+  },
+  {
+    "question": "Where did he get his master's degree?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "Syracuse University"
+    ]
+  },
+  {
+    "question": "What did he study as an undergraduate?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "Rochester Institute"
+    ]
+  },
+  {
+    "question": "Which programming languages and ML frameworks does he use?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "Technical skills"
+    ]
+  },
+  {
+    "question": "How did he build the dynamic pricing system for hourly parking?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "Signature Aviation"
+    ]
+  },
+  {
+    "question": "What forecasting models has he put into production?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "Signature Aviation"
+    ]
+  },
+  {
+    "question": "What did he work on at GHD?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "GHD"
+    ]
+  },
+  {
+    "question": "What model did he build at VyStar Credit Union?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "VyStar"
+    ]
+  },
+  {
+    "question": "What is Golden Oak Research?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "Golden Oak"
+    ]
+  },
+  {
+    "question": "How did he place in the NFL Big Data Bowl?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "Competitions"
+    ]
+  },
+  {
+    "question": "Which certifications does he hold?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "Certifications"
+    ]
+  },
+  {
+    "question": "Did he finish a program at MIT?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "MIT"
+    ]
+  },
+  {
+    "question": "Give me a short summary of his background.",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "Professional summary"
+    ]
+  },
+  {
+    "question": "What did he do as an intern?",
+    "expected_source": "Resume",
+    "expected_sections": [
+      "Intern"
+    ]
+  },
+  {
+    "question": "Where does Headline Radar get its news from?",
+    "expected_source": "Headline Radar README",
+    "expected_sections": [
+      "Headline Radar",
+      "Data source notes"
+    ]
+  },
+  {
+    "question": "How does the topic model cluster headlines?",
+    "expected_source": "Headline Radar README",
+    "expected_sections": [
+      "How the topic model works"
+    ]
+  },
+  {
+    "question": "How are the database tables laid out?",
+    "expected_source": "Headline Radar README",
+    "expected_sections": [
+      "Database design"
+    ]
+  },
+  {
+    "question": "How does the loader avoid adding duplicate articles on reload?",
+    "expected_source": "Headline Radar README",
+    "expected_sections": [
+      "What this shows",
+      "Database design"
+    ]
+  },
+  {
+    "question": "How are sentence embeddings pooled from the transformer output?",
+    "expected_source": "Headline Radar README",
+    "expected_sections": [
+      "Code highlights"
+    ]
+  },
+  {
+    "question": "Why does topic modeling matter for an organization?",
+    "expected_source": "Headline Radar README",
+    "expected_sections": [
+      "Why it matters"
+    ]
+  },
+  {
+    "question": "What happens when the newest GDELT file returns a 404?",
+    "expected_source": "Headline Radar README",
+    "expected_sections": [
+      "Data source notes"
+    ]
+  },
+  {
+    "question": "What pages does the portfolio website have?",
+    "expected_source": "Portfolio site README",
+    "expected_sections": [
+      "The website"
+    ]
+  },
+  {
+    "question": "How do you add a new project to the site?",
+    "expected_source": "Portfolio site README",
+    "expected_sections": [
+      "Add a project"
+    ]
+  },
+  {
+    "question": "What views does the News Topic Explorer offer?",
+    "expected_source": "Portfolio site README",
+    "expected_sections": [
+      "What it shows"
+    ]
+  },
+  {
+    "question": "How many articles are in the current topic fit?",
+    "expected_source": "Portfolio site README",
+    "expected_sections": [
+      "Key numbers"
+    ]
+  },
+  {
+    "question": "Which topic is the largest?",
+    "expected_source": "Portfolio site README",
+    "expected_sections": [
+      "Key numbers"
+    ]
+  },
+  {
+    "question": "How was the topic tree made balanced at the top level?",
+    "expected_source": "Portfolio site README",
+    "expected_sections": [
+      "Code highlights"
+    ]
+  },
+  {
+    "question": "Why would a newsroom use the topic explorer?",
+    "expected_source": "Portfolio site README",
+    "expected_sections": [
+      "Why it matters"
+    ]
+  },
+  {
+    "question": "Is there a resume PDF I can download?",
+    "expected_source": "Portfolio site README",
+    "expected_sections": [
+      "The website"
+    ]
+  },
+  {
+    "question": "What is his favorite pizza topping?",
+    "expected_source": null,
+    "expected_sections": []
+  },
+  {
+    "question": "What will the weather be in Paris tomorrow?",
+    "expected_source": null,
+    "expected_sections": []
+  },
+  {
+    "question": "Who won the 1998 World Cup?",
+    "expected_source": null,
+    "expected_sections": []
+  },
+  {
+    "question": "Can you recommend a lasagna recipe?",
+    "expected_source": null,
+    "expected_sections": []
+  },
+  {
+    "question": "How tall is Mount Everest?",
+    "expected_source": null,
+    "expected_sections": []
+  }
+]

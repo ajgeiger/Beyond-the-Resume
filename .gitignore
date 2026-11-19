@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets and local settings
+.env
+
+# Source documents are copied in by `make sources` and stay out of git.
+data/raw/*
+!data/raw/README.md
+
+# Spend tracking written by the running service
+data/usage.json
+
+# Space staging folder written by scripts/push_to_space.sh
+.space/

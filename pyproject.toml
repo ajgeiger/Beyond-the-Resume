@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rag-chatbot"
+version = "0.1.0"
+description = "A retrieval augmented chatbot that answers questions about Alex Geiger's projects and experience."
+readme = "README.md"
+authors = [{ name = "Alex Geiger" }]
+requires-python = ">=3.11"
+# The base install is the HTTP client only, so a dashboard that calls the API stays light.
+dependencies = ["httpx>=0.27"]
+
+[project.optional-dependencies]
+# Everything needed to build the index and run the API.
+server = [
+    "numpy>=1.26",
+    "pypdf>=5.0",
+    "sentence-transformers>=3.0",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "anthropic>=2.0",
+    "openai>=2.0",
+]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+rag-chatbot = "rag_chatbot.cli.CommandLine:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = ["integration: tests that run the API end to end in process"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B", "UP", "N"]
+ignore = ["N999"]

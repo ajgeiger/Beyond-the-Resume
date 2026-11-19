@@ -1,0 +1,65 @@
+{
+  "index_version": "d272655ade5d",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "chunk_count": 50,
+  "reports": [
+    {
+      "label": "bm25",
+      "questions": 29,
+      "recall_at_k": {
+        "1": 0.7586,
+        "3": 0.9655,
+        "5": 1.0
+      },
+      "mrr": 0.8649,
+      "off_topic_questions": 5,
+      "off_topic_empty": 1.0,
+      "misses": []
+    },
+    {
+      "label": "dense",
+      "questions": 29,
+      "recall_at_k": {
+        "1": 0.7241,
+        "3": 0.7931,
+        "5": 0.8276
+      },
+      "mrr": 0.7598,
+      "off_topic_questions": 5,
+      "off_topic_empty": 1.0,
+      "misses": [
+        "Where did he get his master's degree?",
+        "What did he study as an undergraduate?",
+        "What did he work on at GHD?",
+        "Give me a short summary of his background.",
+        "How was the topic tree made balanced at the top level?"
+      ]
+    },
+    {
+      "label": "hybrid",
+      "questions": 29,
+      "recall_at_k": {
+        "1": 0.8276,
+        "3": 0.9655,
+        "5": 1.0
+      },
+      "mrr": 0.8937,
+      "off_topic_questions": 5,
+      "off_topic_empty": 1.0,
+      "misses": []
+    },
+    {
+      "label": "hybrid + rerank",
+      "questions": 29,
+      "recall_at_k": {
+        "1": 0.8966,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "mrr": 0.9425,
+      "off_topic_questions": 5,
+      "off_topic_empty": 1.0,
+      "misses": []
+    }
+  ]
+}
