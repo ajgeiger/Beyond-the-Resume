@@ -16,6 +16,8 @@ flowchart LR
     A --> C["rag_chatbot_client"] --> W["dashboard /ask"]
 ```
 
+![The Ask page on the portfolio dashboard, answering through this service](docs/images/dashboard-ask.png)
+
 More detail in [docs/architecture.md](docs/architecture.md). Deployment steps
 are in [docs/deployment.md](docs/deployment.md).
 
@@ -105,6 +107,10 @@ and one line in `ProviderFactory`.
 | `POST /retrieve` | `{"query": "...", "top_k": 5, "mode": "hybrid"}` | ranked passages with dense, BM25 and fused scores |
 | `GET /health` | | index version and chunk count (always open) |
 | `GET /info` | | models, chunking, retrieval settings, spend cap state |
+
+Interactive docs are served at `/docs`:
+
+![API docs](docs/images/api-docs.png)
 
 `status` is one of `answered`, `not_covered`, `declined`, `blocked`, `budget`
 or `error`. When `CHATBOT_API_KEY` is set, every route but `/health` needs it
