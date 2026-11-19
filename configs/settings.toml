@@ -33,7 +33,9 @@ candidate_pool = 20
 rrf_k = 60
 # A chunk only enters fusion when it clears one of these bars,
 # so an off topic question returns nothing instead of noise.
-min_dense_similarity = 0.35
+# Off topic probes top out near 0.30 dense similarity; short factual
+# questions such as "What is his current role?" score from 0.33.
+min_dense_similarity = 0.32
 min_bm25_score = 3.5
 
 [reranker]

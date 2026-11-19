@@ -47,8 +47,11 @@ flowchart LR
 - **Hybrid retrieval.** BM25 catches exact names (HDBSCAN, Signature Aviation)
   that the small embedding model blurs; dense search catches paraphrases.
   Reciprocal rank fusion merges the two lists without tuning score scales.
-- **Relevance bars.** A dense similarity of 0.35 or a BM25 score of 3.5 is
+- **Relevance bars.** A dense similarity of 0.32 or a BM25 score of 3.5 is
   required, so off topic questions retrieve nothing and never reach the model.
+  Off topic probes top out near 0.30; the bar was 0.35 until it was found to
+  keep the resume header (0.34) out of the dense vote for "What is his current
+  role?".
 - **Role level sections.** The resume PDF is split per role with titles such
   as `Professional experience > Signature Aviation, Orlando, FL > Lead Applied
   AI Scientist Jul 2026 to Present`, and the header block is titled `Name and

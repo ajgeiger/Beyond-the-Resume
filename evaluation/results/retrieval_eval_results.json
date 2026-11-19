@@ -20,15 +20,14 @@
       "label": "dense",
       "questions": 29,
       "recall_at_k": {
-        "1": 0.6897,
-        "3": 0.7586,
-        "5": 0.7931
+        "1": 0.7241,
+        "3": 0.7931,
+        "5": 0.8276
       },
-      "mrr": 0.7253,
+      "mrr": 0.7598,
       "off_topic_questions": 5,
       "off_topic_empty": 1.0,
       "misses": [
-        "What is his current role?",
         "Where did he get his master's degree?",
         "What did he study as an undergraduate?",
         "What did he work on at GHD?",
@@ -40,11 +39,11 @@
       "label": "hybrid",
       "questions": 29,
       "recall_at_k": {
-        "1": 0.7931,
+        "1": 0.8276,
         "3": 0.9655,
         "5": 1.0
       },
-      "mrr": 0.8764,
+      "mrr": 0.8937,
       "off_topic_questions": 5,
       "off_topic_empty": 1.0,
       "misses": []
