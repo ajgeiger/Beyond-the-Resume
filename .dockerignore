@@ -1,0 +1,14 @@
+.git
+.github
+.venv
+.space
+**/__pycache__
+.pytest_cache
+.ruff_cache
+*.egg-info
+.env
+data/raw
+data/usage.json
+docs/images
+tests
+evaluation/results
