@@ -28,7 +28,8 @@ RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTr
 COPY --chown=user configs ./configs
 COPY --chown=user data/processed ./data/processed
 
-# Spend tracking lives in /tmp. A Space restart resets it, so keep the monthly cap conservative.
+# Spend tracking lives in /tmp and resets on restart, so keep the monthly cap conservative.
+# Hosting platforms inject PORT. 7860 is the fallback when it is unset.
 ENV HF_HUB_OFFLINE=1 \
     HOST=0.0.0.0 \
     PORT=7860 \

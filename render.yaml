@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: rag-chatbot
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: CHATBOT_API_KEY
+        sync: false
+      - key: MONTHLY_BUDGET_USD
+        value: "20"

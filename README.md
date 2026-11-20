@@ -52,7 +52,7 @@ rag-chatbot/
   tests/
     unit/               every package, plus repository rules
     integration/        the API and the client through FastAPI's TestClient
-  Dockerfile  Makefile  pyproject.toml  .env.example
+  Dockerfile  Makefile  pyproject.toml  render.yaml  .env.example
 ```
 
 ## Quick start
@@ -154,8 +154,25 @@ d272655ade5d, 50 chunks:
 - Answers that contain a phone number, an email address or job seeking language are blocked; dashes and emoji are removed.
 - A monthly spend cap stops model calls once reached (`MONTHLY_BUDGET_USD`, default 20).
 
+## Deploying on Render
+
+The repo root has a `render.yaml` for a Starter Docker web service named
+`rag-chatbot`. It builds the existing Dockerfile. Render sets `PORT`; the
+image falls back to 7860 if it is unset. The health check is `GET /health`.
+
+In the Render dashboard, create a Blueprint from this repository (or add a
+Docker web service pointed at it). Fill in `ANTHROPIC_API_KEY` and
+`CHATBOT_API_KEY` when asked. `MONTHLY_BUDGET_USD` is already set to 20.
+
+The spend tracker writes to `/tmp` and resets when the service restarts, so
+also set a monthly cap in the Anthropic console. The committed index is read
+at startup and does not need a disk.
+
+Once it is live, set the dashboard's `CHATBOT_API_URL` to the
+`onrender.com` address and use the same `CHATBOT_API_KEY`.
+
 ## Hosting
 
-The Dockerfile is built for a Hugging Face Docker Space on the free CPU tier:
-user 1000, port 7860, CPU torch, the embedding model downloaded at build
-time. See [docs/deployment.md](docs/deployment.md).
+The Dockerfile is also built for a Hugging Face Docker Space: user 1000,
+port 7860, CPU torch, the embedding model downloaded at build time. See
+[docs/deployment.md](docs/deployment.md).
