@@ -69,7 +69,6 @@ def test_server_errors_are_outages():
     assert raised.value.is_outage
 
 
-
 def test_chat_sends_history():
     seen = {}
 

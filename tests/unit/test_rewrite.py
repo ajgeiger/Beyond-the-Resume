@@ -80,7 +80,6 @@ def test_factory_uses_the_heuristic_without_a_key():
     assert isinstance(rewriter, HeuristicQueryRewriter)
 
 
-
 def test_heuristic_expands_a_thin_first_question():
     result = HeuristicQueryRewriter().rewrite("What does he do?", [])
     assert "Alex Geiger" in result.query

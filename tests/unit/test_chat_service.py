@@ -83,7 +83,6 @@ def test_a_work_style_question_still_reaches_the_model(make_runtime):
     assert payload["status"] in {"answered", "not_covered"}
 
 
-
 def test_follow_up_questions_send_history_to_the_model(make_runtime):
     provider = FakeChatProvider()
     runtime = make_runtime(provider)
