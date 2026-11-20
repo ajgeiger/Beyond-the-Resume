@@ -5,14 +5,20 @@ PORT ?= 8070
 IMAGE ?= rag-chatbot
 SPACE_ID ?=
 
-.PHONY: help install install-client sources index index-force eval eval-rerank serve serve-fake smoke test lint format docker-build docker-run space-push
+.PHONY: help install install-client install-torch download-model sources index index-force eval eval-rerank serve serve-fake smoke test lint format docker-build docker-run space-push
 
 help:
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F ':.*## ' '{printf "  %-14s %s\n", $$1, $$2}'
 
-install: ## Install the server, the client and the dev tools (CPU torch)
-	$(PYTHON) -m pip install --index-url https://download.pytorch.org/whl/cpu torch
+install: ## Install the server, the client and the dev tools
 	$(PYTHON) -m pip install -e ".[server,dev]"
+
+install-torch: ## Optional: sentence-transformers and the reranker (CPU torch)
+	$(PYTHON) -m pip install --index-url https://download.pytorch.org/whl/cpu torch
+	$(PYTHON) -m pip install -e ".[server,dev,torch]"
+
+download-model: ## Download the official MiniLM ONNX export into models/
+	$(PYTHON) scripts/download_embedding_model.py --dir models/all-MiniLM-L6-v2
 
 install-client: ## Install only the HTTP client
 	$(PYTHON) -m pip install -e .

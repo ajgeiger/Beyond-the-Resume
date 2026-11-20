@@ -32,7 +32,7 @@ rag-chatbot/
   deploy/huggingface/   Space card with the Docker front matter
   docs/                 architecture, deployment, screenshots
   evaluation/           retrieval_eval.json (34 questions) and results/
-  scripts/              push_to_space.sh, smoke_test.py
+  scripts/              download_embedding_model.py, push_to_space.sh, smoke_test.py
   src/
     rag_chatbot/
       api/              FastAPI app, routes, schemas, API key guard
@@ -59,7 +59,8 @@ rag-chatbot/
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-make install          # CPU torch, then the server, client and dev tools
+make install          # the server, client and dev tools (onnxruntime, no torch)
+make download-model   # official MiniLM ONNX export, once, into models/
 make test lint
 make serve-fake       # http://127.0.0.1:8070 with the offline model, no key needed
 make smoke            # one question through the client
@@ -93,7 +94,7 @@ the documents in priority order, the sections to skip, and text corrections.
 | Anthropic model | claude-sonnet-5-5 | `LLM_MODEL` or `[llm] anthropic_model` |
 | OpenAI model | gpt-6-astra | `LLM_MODEL` or `[llm] openai_model` |
 | OpenAI compatible server | none | `LLM_BASE_URL` (Hugging Face Inference Endpoints, vLLM) |
-| Embedding model | sentence-transformers/all-MiniLM-L6-v2, 384 dimensions, CPU | `[embedding]` then `make index` |
+| Embedding model | sentence-transformers/all-MiniLM-L6-v2 via ONNX Runtime, 384 dimensions, CPU | `[embedding]` then `make index` |
 | Reranker | cross-encoder/ms-marco-MiniLM-L6-v2, off | `RERANK=true` |
 
 A new provider is one class that implements `AbstractChatProvider.complete`
@@ -174,5 +175,5 @@ Once it is live, set the dashboard's `CHATBOT_API_URL` to the
 ## Hosting
 
 The Dockerfile is also built for a Hugging Face Docker Space: user 1000,
-port 7860, CPU torch, the embedding model downloaded at build time. See
-[docs/deployment.md](docs/deployment.md).
+port 7860, ONNX Runtime, the MiniLM ONNX export downloaded at build time.
+See [docs/deployment.md](docs/deployment.md).

@@ -88,5 +88,15 @@ class Settings:
         reranker = self.reranker
         if "RERANK" in env:
             reranker = replace(reranker, enabled=env["RERANK"].strip().lower() in ("1", "true", "yes"))
+        embedding = self.embedding
+        embedding_changes = {}
+        if "EMBEDDING_PROVIDER" in env:
+            embedding_changes["provider"] = env["EMBEDDING_PROVIDER"].strip().lower()
+        if "EMBEDDING_MODEL_DIR" in env:
+            embedding_changes["model_dir"] = env["EMBEDDING_MODEL_DIR"]
+        if embedding_changes:
+            embedding = replace(self.embedding, **embedding_changes)
         index_dir = Path(env["INDEX_DIR"]) if "INDEX_DIR" in env else self.index_dir
-        return replace(self, llm=llm, guardrails=guardrails, api=api, reranker=reranker, index_dir=index_dir)
+        return replace(
+            self, llm=llm, guardrails=guardrails, api=api, reranker=reranker, embedding=embedding, index_dir=index_dir
+        )

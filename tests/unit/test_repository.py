@@ -11,7 +11,7 @@ from rag_chatbot.guardrails.ContactScrubber import ContactScrubber
 
 ROOT = Path(__file__).resolve().parents[2]
 TEXT_SUFFIXES = {".py", ".md", ".toml", ".json", ".yml", ".yaml", ".txt", ".example", ".sh", ".cfg", ""}
-SKIPPED_PARTS = {".git", ".venv", "__pycache__", ".pytest_cache", ".ruff_cache", "build", "raw"}
+SKIPPED_PARTS = {".git", ".venv", "__pycache__", ".pytest_cache", ".ruff_cache", "build", "raw", "models"}
 
 
 def repository_files():

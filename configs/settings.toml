@@ -16,11 +16,13 @@ min_chunk_tokens = 8
 duplicate_overlap = 0.8
 
 [embedding]
-# provider is sentence-transformers or fake (fake is for tests only).
-provider = "sentence-transformers"
+# provider is onnx, sentence-transformers or fake (fake is for tests only).
+provider = "onnx"
 model_name = "sentence-transformers/all-MiniLM-L6-v2"
 query_prefix = ""
 batch_size = 32
+# Local folder with the ONNX graph and tokenizer. Empty uses models/all-MiniLM-L6-v2.
+model_dir = ""
 # A short query needs few threads. Capping them avoids slowdowns on a shared or small CPU.
 torch_threads = 2
 

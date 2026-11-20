@@ -30,7 +30,7 @@ flowchart LR
 | `config` | Dataclasses for every setting, loaded from `configs/*.toml` with environment overrides. |
 | `ingestion` | One reader per file type (PDF, Markdown, Python text), cleaning, paragraph deduplication across sources. |
 | `chunking` | `Chunk` and `HeadingAwareChunker`: sentence units packed to a token budget with overlap, never across sections. |
-| `embeddings` | `AbstractEmbeddingModel` with the sentence transformer and an offline hashing model for tests. |
+| `embeddings` | `AbstractEmbeddingModel` with the ONNX MiniLM model and an offline hashing model for tests. |
 | `index` | `VectorStore` (exact cosine over numpy), `IndexManifest` (fingerprint of sources and settings), `IndexBuilder`. |
 | `retrieval` | `Bm25Index`, `QueryExpander`, `ReciprocalRankFusion`, `CrossEncoderReranker`, `HybridRetriever`. |
 | `prompts` | `PromptBuilder`: fixed rules first (cacheable), then the retrieved passages, then the question. |
