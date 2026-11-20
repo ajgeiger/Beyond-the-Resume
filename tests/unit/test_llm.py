@@ -93,9 +93,10 @@ def test_openai_reply_separates_cached_tokens():
     assert reply.usage.input_tokens == 100 and reply.usage.cache_read_tokens == 800
 
 
-def test_fake_provider_quotes_and_cites_the_passages():
+def test_fake_provider_quotes_the_passages():
     reply = FakeChatProvider().complete(request())
-    assert "Signature Aviation" in reply.text and "[C1]" in reply.text
+    assert "Signature Aviation" in reply.text
+    assert "[C1]" not in reply.text
 
 
 def test_extra_pricing_from_config_is_used():

@@ -26,4 +26,7 @@ def test_rules_carry_the_content_rules():
     rules = PromptBuilder.SYSTEM_RULES
     assert "Syracuse University" in rules
     assert "Lead Applied AI Scientist" in rules
-    assert "phone number or email" in rules
+    assert "LinkedIn" in rules and "GitHub" in rules
+    assert "Do not show sources or citation tags" in rules
+    assert "open to work" in rules
+    assert "Question: " not in rules

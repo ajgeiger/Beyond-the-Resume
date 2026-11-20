@@ -59,3 +59,18 @@ def test_a_bare_follow_up_reuses_the_previous_question(make_runtime):
     payload = make_runtime().chat("Tell me more", history)
     assert payload["status"] == "answered"
     assert any(item["section"] == "Projects" for item in payload["citations"])
+
+
+def test_a_greeting_uses_the_fixed_thanks(make_runtime):
+    provider = FakeChatProvider()
+    payload = make_runtime(provider).chat("Hi, thanks for having me")
+    assert payload["status"] == "answered"
+    assert payload["answer"] == ChatCopy.GREETING
+    assert provider.calls == []
+
+
+def test_a_work_style_question_still_reaches_the_model(make_runtime):
+    provider = FakeChatProvider()
+    payload = make_runtime(provider).chat("What is he like to work with?")
+    assert provider.calls
+    assert payload["status"] in {"answered", "not_covered"}
