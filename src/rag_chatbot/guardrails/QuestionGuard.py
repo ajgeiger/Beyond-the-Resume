@@ -9,17 +9,16 @@ from rag_chatbot.guardrails.GuardResult import GuardResult
 class QuestionGuard:
     """Answer off limits questions with a fixed reply, without calling the model.
 
-    Job status, availability and pay are declined. Requests for contact details
-    get a pointer to the public links on the site.
+    Pay, notice periods, relocation and leaving an employer are declined.
+    Hiring-fit questions, such as why someone would want him on a team, are allowed.
+    Requests for contact details get a pointer to the public links on the site.
     """
 
     JOB_STATUS = re.compile(
-        r"\b(open to (work|new|opportunit\w*|offers?|roles?)|looking for (a )?(new )?(job|role|position|work)|"
-        r"job (search|hunt\w*)|(is|are) (he|alex) available|(his|alex's) availability|"
-        r"available (for|to) (hire|work|start|interview|join)|for hire|hire (him|alex)|hiring him|recruit (him|alex)|"
-        r"(leave|leaving|quit\w*) (his|signature)|notice period|start date|willing to (relocate|move)|"
-        r"interested in (a )?(new )?(job|role|position|opportunit\w*)|salary|compensation|pay(ing)? (him|range)|"
-        r"how much (does|did|would) he (make|earn)|rate per hour|hourly rate)\b",
+        r"\b(salary|compensation|pay(ing)? (him|range)|"
+        r"how much (does|did|would) he (make|earn)|rate per hour|hourly rate|"
+        r"(leave|leaving|quit\w*) (his|signature)|notice period|start date|"
+        r"willing to (relocate|move))\b",
         re.IGNORECASE,
     )
     CONTACT = re.compile(

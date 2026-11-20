@@ -14,8 +14,8 @@ from rag_chatbot.index.VectorStore import VectorStore
 from rag_chatbot.llm.AbstractChatProvider import AbstractChatProvider
 from rag_chatbot.llm.ProviderFactory import ProviderFactory
 from rag_chatbot.retrieval.AbstractReranker import AbstractReranker
-from rag_chatbot.retrieval.CrossEncoderReranker import CrossEncoderReranker
 from rag_chatbot.retrieval.HybridRetriever import HybridRetriever
+from rag_chatbot.rewrite.QueryRewriterFactory import QueryRewriterFactory
 
 
 class RagRuntime:
@@ -38,6 +38,7 @@ class RagRuntime:
         self.retriever = HybridRetriever(store, model, settings.retrieval, reranker)
         guardrails = settings.guardrails
         self.tracker = CostTracker(guardrails.usage_file, guardrails.monthly_budget_usd)
+        rewriter = QueryRewriterFactory.create(settings.llm, self.tracker)
         self.chat_service = ChatService(
             self.retriever,
             provider,
@@ -45,6 +46,8 @@ class RagRuntime:
             settings.retrieval.default_top_k,
             guardrails.history_turns,
             guardrails.max_question_chars,
+            rewriter,
+            guardrails.max_history_chars,
         )
 
     @classmethod
@@ -54,7 +57,11 @@ class RagRuntime:
         if manifest is None or not VectorStore.exists(directory):
             raise FileNotFoundError(f"No index in {directory}. Run: make index")
         model = EmbeddingModelFactory.create(settings.embedding)
-        reranker = CrossEncoderReranker(settings.reranker.model_name) if settings.reranker.enabled else None
+        reranker = None
+        if settings.reranker.enabled:
+            from rag_chatbot.retrieval.CrossEncoderReranker import CrossEncoderReranker
+
+            reranker = CrossEncoderReranker(settings.reranker.model_name)
         provider = ProviderFactory.create(settings.llm)
         return cls(settings, VectorStore.load(directory), manifest, model, provider, reranker)
 

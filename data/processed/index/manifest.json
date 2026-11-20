@@ -1,7 +1,7 @@
 {
-  "index_version": "d272655ade5d",
-  "fingerprint": "d272655ade5d4a90dca7f08544c01ac2b9ad85cab2a9697c322789dd6045ba7a",
-  "documents_hash": "fb084486b32e3d7a17eb7e442476e44353a6ad99cbe2aa1ed28e48dacce73559",
+  "index_version": "d26f2b1c9e07",
+  "fingerprint": "d26f2b1c9e07cf640bf73b3f8b1c3dd450317e734a6a365f9421f2c896fc0d83",
+  "documents_hash": "f0a0908f13f90d5f05937d3867a7d476d69d82ffcec56af2fd46ca6c82108ffa",
   "documents": [
     {
       "name": "Resume",
@@ -21,12 +21,37 @@
     {
       "name": "Portfolio site README",
       "path": "portfolio_site_readme.md",
-      "sha256": "168bd3528863370e388f858de17b65f805d2ee641d5e17582794012a789ebf20"
+      "sha256": "c995630a1243e5f61526b00404a635188ea353b62e6dd89cb3d23dee3e8150d0"
     },
     {
       "name": "Headline Radar README",
       "path": "headline_radar_readme.md",
       "sha256": "ad928644a6b16044f2510a59fe961e200dd9f3bb169672927c1e84919536c4c7"
+    },
+    {
+      "name": "Portfolio site home page",
+      "path": "portfolio_site_home.py",
+      "sha256": "ecc730bd25d4c48d3270ba7c7e8775bc052c3ae8294476bfedb48139af99e61c"
+    },
+    {
+      "name": "Portfolio site projects page",
+      "path": "portfolio_site_projects.py",
+      "sha256": "b07503814610c1afa8d2e4a1c92dc36fee85cfe3780863c08475bca5ba519d6d"
+    },
+    {
+      "name": "Portfolio site project write ups",
+      "path": "portfolio_site_projects_registry.py",
+      "sha256": "a3d25c8dd7c666d1ec0b9c03367b572e0b50a02eec4f6aac3e98e45c2d27a0ea"
+    },
+    {
+      "name": "Portfolio site pages",
+      "path": "portfolio_site_pages.md",
+      "sha256": "73fd83f33ecf0fda7abf0202f13f32abd02286951d62bf972eaa158273d7d396"
+    },
+    {
+      "name": "Natural gas forecast README",
+      "path": "natural_gas_forecast_readme.md",
+      "sha256": "0edf5c5cfd55b4299d6c2088ad7f016c77268c7d880ea270792dfc5156a29691"
     }
   ],
   "model_name": "sentence-transformers/all-MiniLM-L6-v2",
@@ -37,12 +62,17 @@
     "min_chunk_tokens": 8,
     "duplicate_overlap": 0.8
   },
-  "chunk_count": 50,
+  "chunk_count": 116,
   "pipeline_version": "3",
-  "built_at": "2026-11-19T12:05:40Z",
+  "built_at": "2026-11-20T15:23:21Z",
   "source_counts": {
     "Resume": 19,
-    "Portfolio site README": 15,
-    "Headline Radar README": 16
+    "Portfolio site README": 29,
+    "Headline Radar README": 12,
+    "Portfolio site home page": 2,
+    "Portfolio site projects page": 1,
+    "Portfolio site project write ups": 2,
+    "Portfolio site pages": 7,
+    "Natural gas forecast README": 44
   }
 }

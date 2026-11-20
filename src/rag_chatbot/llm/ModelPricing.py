@@ -44,6 +44,7 @@ class ModelPricing:
 # tokens are charged at the full input rate.
 PRICE_TABLE = {
     "claude-sonnet-5-5": ModelPricing(input=2.0, output=10.0, cache_write=2.5, cache_read=0.10),
+    "claude-haiku-5-5": ModelPricing(input=0.10, output=0.50, cache_write=0.125, cache_read=0.01),
     "claude-fable-5-2": ModelPricing(input=8.0, output=40.0, cache_write=10.0, cache_read=0.20),
     "gpt-6-astra": ModelPricing(input=10.0, output=50.0, cache_write=10.0, cache_read=10.0),
     "fake": ModelPricing(input=0.0, output=0.0, cache_write=0.0, cache_read=0.0),

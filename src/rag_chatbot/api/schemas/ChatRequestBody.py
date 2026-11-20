@@ -7,6 +7,6 @@ from rag_chatbot.api.schemas.HistoryTurn import HistoryTurn
 
 class ChatRequestBody(BaseModel):
     question: str = Field(min_length=1, max_length=2000)
-    # Earlier turns, oldest first. Only the last few are used.
+    # Earlier turns, oldest first. Only the last 10 turns are used, and each message is capped.
     history: list[HistoryTurn] = Field(default_factory=list, max_length=20)
     top_k: int | None = Field(default=None, ge=1, le=50)

@@ -74,6 +74,8 @@ class Settings:
         if env.get("LLM_MODEL"):
             model_field = "openai_model" if llm.resolved_provider == "openai" else "anthropic_model"
             llm = replace(llm, **{model_field: env["LLM_MODEL"]})
+        if env.get("LLM_REWRITE_MODEL"):
+            llm = replace(llm, rewrite_model=env["LLM_REWRITE_MODEL"])
         guardrails = replace(
             self.guardrails,
             monthly_budget_usd=float(env.get("MONTHLY_BUDGET_USD", self.guardrails.monthly_budget_usd)),

@@ -10,12 +10,14 @@ class LlmSettings:
     auto picks Anthropic when ANTHROPIC_API_KEY is set, then OpenAI when
     OPENAI_API_KEY is set, then the offline fake. A bigger or different model
     is a config change: set the model name here or LLM_MODEL in the
-    environment. base_url points the OpenAI provider at any OpenAI compatible
+    environment. rewrite_model (or LLM_REWRITE_MODEL) writes follow up search
+    queries. base_url points the OpenAI provider at any OpenAI compatible
     server, such as a Hugging Face Inference Endpoint or vLLM.
     """
 
     provider: str = "auto"
     anthropic_model: str = "claude-sonnet-5-5"
+    rewrite_model: str = "claude-haiku-5-5"
     openai_model: str = "gpt-6-astra"
     base_url: str = ""
     max_output_tokens: int = 700

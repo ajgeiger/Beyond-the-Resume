@@ -11,8 +11,8 @@ class ChatCopy:
     )
     GREETING = "Thanks for taking the time to visit. Alex would be glad to connect through LinkedIn."
     DECLINED = (
-        "I only describe Alex's projects and experience, so questions about his job plans or pay are "
-        "outside what I cover. You could ask what he built at Signature Aviation instead."
+        "I don't cover questions about pay or personal employment details. "
+        "You could ask what he would bring to a team, or what he built at Signature Aviation."
     )
     CONTACT = "The best way to reach Alex is through the LinkedIn and GitHub links on his site."
     BLOCKED = (

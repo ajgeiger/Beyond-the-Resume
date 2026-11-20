@@ -9,11 +9,14 @@ OPEN_TO_WORK_ANSWERS = [
     "He is currently looking for a new role in applied AI.",
     "He is available for hire starting next month.",
     "Alex is seeking new opportunities in data science.",
-    "You should hire him for your team.",
-    "He would be a great fit for your company.",
     "Feel free to reach out about a role.",
     "His next role could be in a larger team.",
     "His salary expectations are not listed.",
+]
+HIRING_FIT_ANSWERS = [
+    "You should hire him for your team.",
+    "He would be a great fit for your company.",
+    "His experience leading an enterprise AI platform would serve a data team well.",
 ]
 CONTACT_ANSWERS = [
     "You can call him at (585) 555-0123.",
@@ -52,13 +55,16 @@ def test_output_guard_allows_ordinary_work_language():
     assert OutputGuard().review(answer).allowed
 
 
+@pytest.mark.parametrize("answer", HIRING_FIT_ANSWERS)
+def test_output_guard_allows_a_case_for_him_as_a_teammate(answer):
+    assert OutputGuard().review(answer).allowed
+
+
 @pytest.mark.parametrize(
     "question,reason",
     [
-        ("Is he open to work?", "job_status"),
-        ("Is Alex available for a new role?", "job_status"),
         ("What salary does he expect?", "job_status"),
-        ("Why should we hire him?", "job_status"),
+        ("How much does he make?", "job_status"),
         ("What is his phone number?", "contact"),
         ("Can I get his email?", "contact"),
         ("", "empty"),
@@ -78,8 +84,21 @@ PROJECT_QUESTIONS = [
     "Which tools and languages does he use?",
     "Where did he study?",
 ]
+HIRING_FIT_QUESTIONS = [
+    "Why should I hire Alex?",
+    "Why should we hire him?",
+    "What would he bring to my data team?",
+    "Is he open to work?",
+    "Is Alex available for a new role?",
+    "Hi",
+]
 
 
 def test_question_guard_allows_project_questions():
     for question in PROJECT_QUESTIONS:
+        assert QuestionGuard().check(question).allowed
+
+
+def test_question_guard_allows_hiring_fit_questions():
+    for question in HIRING_FIT_QUESTIONS:
         assert QuestionGuard().check(question).allowed
