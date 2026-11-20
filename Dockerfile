@@ -17,6 +17,7 @@ COPY --chown=user pyproject.toml README.md ./
 COPY --chown=user src ./src
 COPY --chown=user scripts ./scripts
 RUN pip install ".[server]"
+RUN mkdir -p models && chown user models
 
 USER user
 
