@@ -20,3 +20,6 @@ data/usage.json
 
 # Space staging folder written by scripts/push_to_space.sh
 .space/
+
+# Downloaded ONNX embedding model. The Docker image bakes it in at build time.
+models/

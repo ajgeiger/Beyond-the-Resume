@@ -32,7 +32,7 @@ rag-chatbot/
   deploy/huggingface/   Space card with the Docker front matter
   docs/                 architecture, deployment, screenshots
   evaluation/           retrieval_eval.json (34 questions) and results/
-  scripts/              push_to_space.sh, smoke_test.py
+  scripts/              download_embedding_model.py, push_to_space.sh, smoke_test.py
   src/
     rag_chatbot/
       api/              FastAPI app, routes, schemas, API key guard
@@ -52,14 +52,15 @@ rag-chatbot/
   tests/
     unit/               every package, plus repository rules
     integration/        the API and the client through FastAPI's TestClient
-  Dockerfile  Makefile  pyproject.toml  .env.example
+  Dockerfile  Makefile  pyproject.toml  render.yaml  .env.example
 ```
 
 ## Quick start
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-make install          # CPU torch, then the server, client and dev tools
+make install          # the server, client and dev tools (onnxruntime, no torch)
+make download-model   # official MiniLM ONNX export, once, into models/
 make test lint
 make serve-fake       # http://127.0.0.1:8070 with the offline model, no key needed
 make smoke            # one question through the client
@@ -93,7 +94,7 @@ the documents in priority order, the sections to skip, and text corrections.
 | Anthropic model | claude-sonnet-5-5 | `LLM_MODEL` or `[llm] anthropic_model` |
 | OpenAI model | gpt-6-astra | `LLM_MODEL` or `[llm] openai_model` |
 | OpenAI compatible server | none | `LLM_BASE_URL` (Hugging Face Inference Endpoints, vLLM) |
-| Embedding model | sentence-transformers/all-MiniLM-L6-v2, 384 dimensions, CPU | `[embedding]` then `make index` |
+| Embedding model | sentence-transformers/all-MiniLM-L6-v2 via ONNX Runtime, 384 dimensions, CPU | `[embedding]` then `make index` |
 | Reranker | cross-encoder/ms-marco-MiniLM-L6-v2, off | `RERANK=true` |
 
 A new provider is one class that implements `AbstractChatProvider.complete`
@@ -154,8 +155,25 @@ d272655ade5d, 50 chunks:
 - Answers that contain a phone number, an email address or job seeking language are blocked; dashes and emoji are removed.
 - A monthly spend cap stops model calls once reached (`MONTHLY_BUDGET_USD`, default 20).
 
+## Deploying on Render
+
+The repo root has a `render.yaml` for a Starter Docker web service named
+`rag-chatbot`. It builds the existing Dockerfile. Render sets `PORT`; the
+image falls back to 7860 if it is unset. The health check is `GET /health`.
+
+In the Render dashboard, create a Blueprint from this repository (or add a
+Docker web service pointed at it). Fill in `ANTHROPIC_API_KEY` and
+`CHATBOT_API_KEY` when asked. `MONTHLY_BUDGET_USD` is already set to 20.
+
+The spend tracker writes to `/tmp` and resets when the service restarts, so
+also set a monthly cap in the Anthropic console. The committed index is read
+at startup and does not need a disk.
+
+Once it is live, set the dashboard's `CHATBOT_API_URL` to the
+`onrender.com` address and use the same `CHATBOT_API_KEY`.
+
 ## Hosting
 
-The Dockerfile is built for a Hugging Face Docker Space on the free CPU tier:
-user 1000, port 7860, CPU torch, the embedding model downloaded at build
-time. See [docs/deployment.md](docs/deployment.md).
+The Dockerfile is also built for a Hugging Face Docker Space: user 1000,
+port 7860, ONNX Runtime, the MiniLM ONNX export downloaded at build time.
+See [docs/deployment.md](docs/deployment.md).
