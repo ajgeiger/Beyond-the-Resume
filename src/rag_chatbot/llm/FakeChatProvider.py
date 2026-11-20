@@ -10,7 +10,7 @@ from rag_chatbot.retrieval.Tokenizer import Tokenizer
 
 
 class FakeChatProvider(AbstractChatProvider):
-    """Answer by quoting the sentences that best match the question, with citations.
+    """Answer by quoting the sentences that best match the question.
 
     Pass scripted_reply to return a fixed text instead, which is how the tests
     check that the guardrails catch a bad answer.
@@ -60,4 +60,4 @@ class FakeChatProvider(AbstractChatProvider):
         if not best:
             best = [(0, 0, request.hits[0].text, "C1")]
         best.sort(key=lambda item: item[1])
-        return " ".join(f"{sentence.rstrip(';')} [{label}]" for _, _, sentence, label in best)
+        return " ".join(sentence.rstrip(";") for _, _, sentence, _label in best)

@@ -1,4 +1,4 @@
-"""Answer one question from start to finish: guard, retrieve, generate, guard, cite."""
+"""Answer one question from start to finish: guard, retrieve, generate and guard."""
 
 import logging
 import re
@@ -23,15 +23,24 @@ class ChatService:
     1. QuestionGuard answers off limits questions with fixed text.
     2. HybridRetriever finds passages, or none when nothing clears the relevance bar.
     3. CostTracker stops calls once the monthly cap is reached.
-    4. The provider writes an answer from the retrieved passages only, citing C1, C2 and so on.
+    4. The provider writes an answer from the retrieved passages only.
     5. OutputGuard blocks answers that break the content rules.
-    6. Citations are mapped back to the chunks they label.
+    6. The citations field lists the retrieved passages (and any C ids still present in the answer).
 
     Steps 1 to 3 never call the model, so they never cost anything.
     """
 
     CITATION = re.compile(r"\s*\[(C\d+(?:\s*,\s*C\d+)*)\]")
-    NOT_COVERED_START = "That is not covered"
+    GREETING = re.compile(
+        r"^(hi|hello|hey|thanks|thank you|thanks for having me|good (morning|afternoon|evening))"
+        r"([,!. ]+(hi|hello|hey|thanks|thank you|thanks for having me))*[,!. ]*$",
+        re.IGNORECASE,
+    )
+    WORK_STYLE = re.compile(
+        r"\b(like to work with|to work with him|what (is he|he's) like|what (does he|he) care about|"
+        r"his values|his (working )?style|as a teammate|as a colleague|soft skills|personality)\b",
+        re.IGNORECASE,
+    )
 
     def __init__(
         self,
@@ -56,9 +65,11 @@ class ChatService:
         checked = self.question_guard.check(question)
         if not checked.allowed:
             return ChatAnswer(checked.text, "declined")
+        if self.is_greeting(checked.text):
+            return ChatAnswer(ChatCopy.GREETING, "answered")
 
         hits = self.retrieve(checked.text, history, top_k or self.top_k)
-        if not hits:
+        if not hits and not self.is_work_style(checked.text):
             return ChatAnswer(ChatCopy.NOT_COVERED, "not_covered")
 
         if self.tracker.is_exhausted():
@@ -78,7 +89,7 @@ class ChatService:
         if not reviewed.allowed:
             LOGGER.warning("Answer blocked by the output guard: %s", reviewed.reason)
             return ChatAnswer(reviewed.text, "blocked", cost_usd=cost)
-        if reviewed.text.startswith(self.NOT_COVERED_START):
+        if self.is_not_covered(reviewed.text):
             return ChatAnswer(self.strip_citations(reviewed.text), "not_covered", cost_usd=cost)
 
         sources = self.cited(reviewed.text, hits) or tuple(hits[:3])
@@ -110,6 +121,19 @@ class ChatService:
             if item.get("content") and item.get("role") in ("user", "assistant")
         ]
         return turns[-2 * self.history_turns :]
+
+    @staticmethod
+    def is_greeting(question: str) -> bool:
+        return bool(ChatService.GREETING.fullmatch(question.strip()))
+
+    @staticmethod
+    def is_work_style(question: str) -> bool:
+        return bool(ChatService.WORK_STYLE.search(question))
+
+    @staticmethod
+    def is_not_covered(text: str) -> bool:
+        start = text.strip().lower()
+        return start.startswith("that is not covered") or start.startswith("i don't have details")
 
     @staticmethod
     def is_follow_up(question: str) -> bool:

@@ -5,10 +5,11 @@ class ChatCopy:
     """Plain, understated wording for answers that skip the language model."""
 
     NOT_COVERED = (
-        "That is not covered in the material I have. I can answer questions about Alex's resume, "
+        "I don't have details on that, but I can tell you about Alex's resume, "
         "his work at Signature Aviation and earlier roles, and his projects such as Headline Radar "
         "and the News Topic Explorer."
     )
+    GREETING = "Thanks for taking the time to visit. Alex would be glad to connect through LinkedIn."
     DECLINED = (
         "I only describe Alex's projects and experience, so questions about his job plans or pay are "
         "outside what I cover. You could ask what he built at Signature Aviation instead."
