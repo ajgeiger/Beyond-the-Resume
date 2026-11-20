@@ -81,3 +81,34 @@ def test_a_work_style_question_still_reaches_the_model(make_runtime):
     payload = make_runtime(provider).chat("What is he like to work with?")
     assert provider.calls
     assert payload["status"] in {"answered", "not_covered"}
+
+
+
+def test_follow_up_questions_send_history_to_the_model(make_runtime):
+    provider = FakeChatProvider()
+    runtime = make_runtime(provider)
+    first = runtime.chat("What did he build at Signature Aviation?")
+    history = [
+        {"role": "user", "content": "What did he build at Signature Aviation?"},
+        {"role": "assistant", "content": first["answer"]},
+    ]
+    second = runtime.chat("How long has he done that?", history)
+    request = provider.calls[-1]
+    assert [message["role"] for message in request.messages] == ["user", "assistant", "user"]
+    assert "Signature Aviation" in request.messages[0]["content"]
+    assert "How long has he done that?" in request.messages[-1]["content"]
+    assert second["status"] in {"answered", "not_covered"}
+
+
+def test_recent_history_keeps_the_last_ten_turns_and_caps_length(make_runtime):
+    service = make_runtime().chat_service
+    service.history_turns = 10
+    service.max_history_chars = 20
+    history = []
+    for number in range(12):
+        history.append({"role": "user", "content": f"question {number} " + "x" * 40})
+        history.append({"role": "assistant", "content": f"answer {number} " + "y" * 40})
+    recent = service.recent(history)
+    assert len(recent) == 20
+    assert recent[0]["content"].startswith("question 2")
+    assert all(len(item["content"]) <= 20 for item in recent)

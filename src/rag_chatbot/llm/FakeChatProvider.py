@@ -40,11 +40,20 @@ class FakeChatProvider(AbstractChatProvider):
         usage = TokenUsage(input_tokens=input_words, output_tokens=len(text.split()), cache_read_tokens=rules_words)
         return ChatReply(text=text, model=self.model, usage=usage)
 
+    def question_text(self, request: ChatRequest) -> str:
+        """The current question plus earlier user turns, so a short follow up still matches the passages."""
+        parts = []
+        for message in request.messages:
+            if message.get("role") == "user" and message.get("content"):
+                text = message["content"].split("\n")[0].removeprefix("Question:").strip()
+                if text:
+                    parts.append(text)
+        return " ".join(parts)
+
     def quote(self, request: ChatRequest) -> str:
         if not request.hits:
             return "That is not covered in the material I have."
-        question = request.messages[-1]["content"].split("\n")[0].removeprefix("Question:").strip()
-        terms = set(Tokenizer.terms(question))
+        terms = set(Tokenizer.terms(self.question_text(request)))
         candidates = []
         for rank, passage in enumerate(request.hits):
             label = f"C{rank + 1}"

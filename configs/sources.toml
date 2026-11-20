@@ -17,6 +17,14 @@ skipped_sections = [
     "project layout",
     "label export format",
     "sources",
+    "quickstart",
+    "configuration",
+    "layout",
+    "roadmap",
+    "spark",
+    "prefect",
+    "code highlights",
+    "tournament code highlights",
 ]
 
 # Text fixes applied before chunking, for wording that is out of date in a source.
@@ -53,3 +61,33 @@ name = "Headline Radar README"
 kind = "markdown"
 file = "headline_radar_readme.md"
 origin = "headline-radar/README.md"
+
+[[sources]]
+name = "Portfolio site home page"
+kind = "python"
+file = "portfolio_site_home.py"
+origin = "topic-explorer-dashboard/pages/HomePage.py"
+
+[[sources]]
+name = "Portfolio site projects page"
+kind = "python"
+file = "portfolio_site_projects.py"
+origin = "topic-explorer-dashboard/pages/ProjectsPage.py"
+
+[[sources]]
+name = "Portfolio site project write ups"
+kind = "python"
+file = "portfolio_site_projects_registry.py"
+origin = "topic-explorer-dashboard/portfolio/ProjectRegistry.py"
+
+[[sources]]
+name = "Portfolio site pages"
+kind = "markdown"
+file = "portfolio_site_pages.md"
+origin = "rag-chatbot/docs/portfolio_site_pages.md"
+
+[[sources]]
+name = "Natural gas forecast README"
+kind = "markdown"
+file = "natural_gas_forecast_readme.md"
+origin = "natural-gas-forecasting/README.md"

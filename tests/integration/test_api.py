@@ -45,3 +45,13 @@ def test_api_key_protects_everything_but_health(protected_client):
     assert protected_client.post("/chat", json={"question": "q"}).status_code == 401
     assert protected_client.get("/info", headers={"X-API-Key": "test-key"}).status_code == 200
     assert protected_client.get("/info", headers={"Authorization": "Bearer test-key"}).status_code == 200
+
+
+
+def test_chat_accepts_ten_turns_of_history(api_client):
+    history = []
+    for number in range(10):
+        history.append({"role": "user", "content": f"question {number}"})
+        history.append({"role": "assistant", "content": f"answer {number}"})
+    body = api_client.post("/chat", json={"question": "How long has he done that?", "history": history}).json()
+    assert body["status"] in {"answered", "not_covered", "declined"}

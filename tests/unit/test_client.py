@@ -67,3 +67,20 @@ def test_server_errors_are_outages():
     with pytest.raises(ChatbotError) as raised:
         client_with(lambda request: httpx.Response(503)).info()
     assert raised.value.is_outage
+
+
+
+def test_chat_sends_history():
+    seen = {}
+
+    def handler(request):
+        seen["body"] = request.read()
+        return httpx.Response(200, json=CHAT_REPLY)
+
+    history = [
+        {"role": "user", "content": "What does he do?"},
+        {"role": "assistant", "content": "He leads applied AI."},
+    ]
+    client_with(handler).chat("How long has he done that?", history)
+    assert b"What does he do?" in seen["body"]
+    assert b"How long has he done that?" in seen["body"]

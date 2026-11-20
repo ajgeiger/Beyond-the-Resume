@@ -5,11 +5,6 @@ from rag_chatbot.embeddings.AbstractEmbeddingModel import AbstractEmbeddingModel
 from rag_chatbot.embeddings.FakeEmbeddingModel import FakeEmbeddingModel
 from rag_chatbot.embeddings.OnnxEmbeddingModel import OnnxEmbeddingModel
 
-try:
-    from rag_chatbot.embeddings.SentenceTransformerEmbeddingModel import SentenceTransformerEmbeddingModel
-except ImportError:
-    SentenceTransformerEmbeddingModel = None
-
 
 class EmbeddingModelFactory:
     @staticmethod
@@ -17,10 +12,8 @@ class EmbeddingModelFactory:
         if settings.provider == "onnx":
             return OnnxEmbeddingModel(settings)
         if settings.provider == "sentence-transformers":
-            if SentenceTransformerEmbeddingModel is None:
-                raise ImportError(
-                    "sentence-transformers is not installed. Use provider 'onnx', or pip install the torch extra."
-                )
+            from rag_chatbot.embeddings.SentenceTransformerEmbeddingModel import SentenceTransformerEmbeddingModel
+
             return SentenceTransformerEmbeddingModel(settings)
         if settings.provider == "fake":
             return FakeEmbeddingModel()

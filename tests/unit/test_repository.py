@@ -46,13 +46,23 @@ def test_abstract_classes_start_with_abstract():
                 assert node.name.startswith("Abstract"), node.name
 
 
+# Torch and sentence-transformers stay unloaded unless a caller asks for them, so
+# the ONNX serve path fits a 512 MB host. Only these functions may import them.
+LAZY_TORCH_IMPORTS = {
+    ("EmbeddingModelFactory.py", "create"),
+    ("RagRuntime.py", "from_settings"),
+    ("CrossEncoderReranker.py", "__init__"),
+}
+
+
 def test_imports_are_at_the_top_of_each_module():
     for path in python_files():
         tree = ast.parse(path.read_text("utf-8"))
         for node in ast.walk(tree):
             if isinstance(node, ast.FunctionDef | ast.AsyncFunctionDef):
                 inner = [item for item in ast.walk(node) if isinstance(item, ast.Import | ast.ImportFrom)]
-                assert inner == [], f"{path}:{node.name} imports inside a function"
+                if inner and (path.name, node.name) not in LAZY_TORCH_IMPORTS:
+                    raise AssertionError(f"{path}:{node.name} imports inside a function")
 
 
 def test_no_secrets_or_env_files_are_committed():
