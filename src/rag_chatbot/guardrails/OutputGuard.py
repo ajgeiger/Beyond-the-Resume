@@ -10,8 +10,9 @@ from rag_chatbot.guardrails.GuardResult import GuardResult
 class OutputGuard:
     """Block answers that break Alex's public rules, and tidy the ones that pass.
 
-    Blocked: anything that says or suggests he is open to work, available or
+    Blocked: anything that says he is open to work, job searching, available or
     for hire, any pay talk, and any phone number or email address.
+    A confident case for him as a teammate is allowed.
     Tidied: long dashes become commas, emoji are removed, and any mention of
     the iSchool becomes Syracuse University.
     """
@@ -22,8 +23,7 @@ class OutputGuard:
         r"(job|role|position|opportunit\w*|challenge|chapter)|"
         r"seeking (a |new )*(job|role|position|opportunit\w*|employment)|"
         r"job (search|hunt\w*)|available (for|to) (hire|work|start|interview|join|new)|for hire|"
-        r"(hire|hiring|recruit) (him|alex)|(he|alex) (is|would be) (a )?(great|strong|perfect|ideal) "
-        r"(hire|fit|candidate|addition)|next (role|opportunit\w*|career move|position)|"
+        r"next (role|opportunit\w*|career move|position)|"
         r"(reach out|contact him|get in touch) (about|for|regarding) (a |an )?(role|opportunit\w*|position|job)|"
         r"(his|alex's) availability|notice period|ready to (join|start|move)|"
         r"salary|compensation|pay range|expected pay)\b",

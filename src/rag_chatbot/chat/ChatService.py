@@ -23,7 +23,7 @@ class ChatService:
     1. QuestionGuard answers off limits questions with fixed text.
     2. HybridRetriever finds passages, or none when nothing clears the relevance bar.
     3. CostTracker stops calls once the monthly cap is reached.
-    4. The provider writes an answer from the retrieved passages only.
+    4. The provider writes an answer from the retrieved passages and what is known about his experience.
     5. OutputGuard blocks answers that break the content rules.
     6. The citations field lists the retrieved passages (and any C ids still present in the answer).
 
@@ -39,6 +39,19 @@ class ChatService:
     WORK_STYLE = re.compile(
         r"\b(like to work with|to work with him|what (is he|he's) like|what (does he|he) care about|"
         r"his values|his (working )?style|as a teammate|as a colleague|soft skills|personality)\b",
+        re.IGNORECASE,
+    )
+    HIRING_FIT = re.compile(
+        r"\b(why (should|would) (i|we|you|someone|a (company|team|manager)) "
+        r"(hire|want|choose|consider) (him|alex)|"
+        r"why (hire|choose|consider) (him|alex)|"
+        r"(hire|hiring) (him|alex)|"
+        r"what would he bring|bring to (my|our|a|the) (team|company|org\w*|group)|"
+        r"on (my|our|a) team|(his )?(strengths|leadership|technical depth|culture fit)|"
+        r"good fit|great fit|why (do i|would i) want (alex|him)|want alex to work|"
+        r"as a (hire|candidate)|"
+        r"open to work|open to (new )?(opportunit\w*|roles?|offers?)|"
+        r"(is|are) (he|alex) available)\b",
         re.IGNORECASE,
     )
 
@@ -69,7 +82,7 @@ class ChatService:
             return ChatAnswer(ChatCopy.GREETING, "answered")
 
         hits = self.retrieve(checked.text, history, top_k or self.top_k)
-        if not hits and not self.is_work_style(checked.text):
+        if not hits and not self.may_answer_without_hits(checked.text):
             return ChatAnswer(ChatCopy.NOT_COVERED, "not_covered")
 
         if self.tracker.is_exhausted():
@@ -129,6 +142,14 @@ class ChatService:
     @staticmethod
     def is_work_style(question: str) -> bool:
         return bool(ChatService.WORK_STYLE.search(question))
+
+    @staticmethod
+    def is_hiring_fit(question: str) -> bool:
+        return bool(ChatService.HIRING_FIT.search(question))
+
+    @staticmethod
+    def may_answer_without_hits(question: str) -> bool:
+        return ChatService.is_work_style(question) or ChatService.is_hiring_fit(question)
 
     @staticmethod
     def is_not_covered(text: str) -> bool:

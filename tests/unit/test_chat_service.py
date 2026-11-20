@@ -20,11 +20,18 @@ def test_off_topic_questions_never_reach_the_model(make_runtime):
     assert provider.calls == []
 
 
-def test_job_status_questions_are_declined_without_a_call(make_runtime):
+def test_pay_questions_are_declined_without_a_call(make_runtime):
     provider = FakeChatProvider()
-    payload = make_runtime(provider).chat("Is he open to work?")
+    payload = make_runtime(provider).chat("What salary does he expect?")
     assert payload["status"] == "declined"
     assert provider.calls == []
+
+
+def test_hiring_fit_questions_reach_the_model(make_runtime):
+    provider = FakeChatProvider()
+    payload = make_runtime(provider).chat("Why should I hire Alex?")
+    assert provider.calls
+    assert payload["status"] in {"answered", "not_covered"}
 
 
 def test_answers_with_contact_details_are_blocked(make_runtime):

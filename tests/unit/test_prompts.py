@@ -29,4 +29,6 @@ def test_rules_carry_the_content_rules():
     assert "LinkedIn" in rules and "GitHub" in rules
     assert "Do not show sources or citation tags" in rules
     assert "open to work" in rules
+    assert "150 words" in rules
+    assert "ambitious, long-term teams" in rules
     assert "Question: " not in rules
