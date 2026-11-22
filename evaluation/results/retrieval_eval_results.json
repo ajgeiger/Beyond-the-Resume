@@ -1,19 +1,19 @@
 {
-  "index_version": "f52f7032b1e6",
+  "index_version": "2896905e808f",
   "model": "sentence-transformers/all-MiniLM-L6-v2",
-  "chunk_count": 116,
+  "chunk_count": 119,
   "reports": [
     {
       "label": "bm25",
       "questions": 29,
       "recall_at_k": {
-        "1": 0.7241,
-        "3": 0.8621,
+        "1": 0.7586,
+        "3": 0.8276,
         "5": 0.931
       },
-      "mrr": 0.8086,
+      "mrr": 0.8098,
       "off_topic_questions": 5,
-      "off_topic_empty": 0.8,
+      "off_topic_empty": 0.6,
       "misses": [
         "How are sentence embeddings pooled from the transformer output?",
         "How was the topic tree made balanced at the top level?"
@@ -23,17 +23,17 @@
       "label": "dense",
       "questions": 29,
       "recall_at_k": {
-        "1": 0.5517,
-        "3": 0.7586,
+        "1": 0.5862,
+        "3": 0.7241,
         "5": 0.7931
       },
-      "mrr": 0.6506,
+      "mrr": 0.6667,
       "off_topic_questions": 5,
       "off_topic_empty": 0.8,
       "misses": [
         "Where did he get his master's degree?",
         "What did he study as an undergraduate?",
-        "What did he work on at GHD?",
+        "How did he build the dynamic pricing system for hourly parking?",
         "Give me a short summary of his background.",
         "How are sentence embeddings pooled from the transformer output?",
         "How was the topic tree made balanced at the top level?"
@@ -43,11 +43,11 @@
       "label": "hybrid",
       "questions": 29,
       "recall_at_k": {
-        "1": 0.6897,
-        "3": 0.8621,
+        "1": 0.7241,
+        "3": 0.8276,
         "5": 0.931
       },
-      "mrr": 0.7856,
+      "mrr": 0.7943,
       "off_topic_questions": 5,
       "off_topic_empty": 0.6,
       "misses": [

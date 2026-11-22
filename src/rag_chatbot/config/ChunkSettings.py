@@ -6,7 +6,7 @@ from dataclasses import asdict, dataclass
 @dataclass(frozen=True)
 class ChunkSettings:
     chunk_size_tokens: int = 160
-    chunk_overlap_tokens: int = 32
+    chunk_overlap_tokens: int = 16
     min_chunk_tokens: int = 8
     duplicate_overlap: float = 0.8
 

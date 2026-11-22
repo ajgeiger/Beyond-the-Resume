@@ -5,8 +5,8 @@
 ```mermaid
 flowchart LR
     subgraph Build["make index"]
-        S["data/raw<br/>resume PDF, resume text, READMEs"] --> I["ingestion<br/>readers, cleaning,<br/>contact scrubbing, corrections"]
-        I --> C["chunking<br/>heading aware, 160 tokens, 32 overlap"]
+        S["data/raw<br/>resume PDF, site pages, READMEs"] --> I["ingestion<br/>readers, cleaning,<br/>contact scrubbing, corrections"]
+        I --> C["chunking<br/>heading aware, 160 tokens, 16 overlap"]
         C --> E["embeddings<br/>all-MiniLM-L6-v2"]
         E --> X[("data/processed/index<br/>chunks.json, vectors.npy, manifest.json")]
     end
@@ -29,7 +29,7 @@ flowchart LR
 | --- | --- |
 | `config` | Dataclasses for every setting, loaded from `configs/*.toml` with environment overrides. |
 | `ingestion` | One reader per file type (PDF, Markdown, Python text), cleaning, paragraph deduplication across sources. |
-| `chunking` | `Chunk` and `HeadingAwareChunker`: sentence units packed to a token budget with overlap, never across sections. |
+| `chunking` | `Chunk` and `HeadingAwareChunker`: paragraph units packed to a token budget, with a small overlap only when a section is split. |
 | `embeddings` | `AbstractEmbeddingModel` with the ONNX MiniLM model and an offline hashing model for tests. |
 | `index` | `VectorStore` (exact cosine over numpy), `IndexManifest` (fingerprint of sources and settings), `IndexBuilder`. |
 | `retrieval` | `Bm25Index`, `QueryExpander`, `ReciprocalRankFusion`, `CrossEncoderReranker`, `HybridRetriever`. |
@@ -52,12 +52,11 @@ flowchart LR
   Off topic probes top out near 0.30; the bar was 0.35 until it was found to
   keep the resume header (0.34) out of the dense vote for "What is his current
   role?".
-- **Role level sections.** The resume PDF is split per role with titles such
-  as `Professional experience > Signature Aviation, Orlando, FL > Lead Applied
-  AI Scientist Jul 2026 to Present`, and the header block is titled `Name and
-  current title`. Section titles are part of the embedded text and get double
-  weight in BM25, which is what lets "What is his current role?" find the
-  right passage.
+- **Role level sections.** The resume PDF is split per role, with the header
+  block titled `Name and current title`. Each experience role carries a short
+  header of company, title and dates that is prefixed onto every chunk of that
+  role. Section titles are part of the embedded text and get double weight in
+  BM25, which is what lets "What is his current role?" find the right passage.
 - **Committed index.** The index is small (about 100 KB) and contains no
   contact details (the build fails if any survive scrubbing), so it is
   committed. Deployment never needs the source documents, and `data/raw` stays

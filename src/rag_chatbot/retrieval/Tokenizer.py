@@ -13,10 +13,13 @@ class Tokenizer:
         tell more much many any some""".split()
     )
     WORD = re.compile(r"[a-z0-9]+")
+    # "A/B testing" would otherwise become the stop words "a" and "b".
+    SLASHED_INITIALS = re.compile(r"\b([a-z])/([a-z])\b")
 
     @classmethod
     def terms(cls, text: str) -> list[str]:
-        words = cls.WORD.findall(text.lower())
+        normalized = cls.SLASHED_INITIALS.sub(r"\1\2", text.lower())
+        words = cls.WORD.findall(normalized)
         return [cls.stem(word) for word in words if word not in cls.STOP_WORDS and len(word) > 1]
 
     @staticmethod
