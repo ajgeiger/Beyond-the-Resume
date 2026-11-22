@@ -42,7 +42,11 @@ class ChatService:
         r"([,!. ]+(hi|hello|hey|thanks|thank you|thanks for having me))*[,!. ]*$",
         re.IGNORECASE,
     )
-    THANKS = re.compile(r"^\s*(thanks|thank you|thx|much appreciated|appreciate (it|that|the help))\b", re.IGNORECASE)
+    THANKS = re.compile(
+        r"^\s*(thanks|thank you|thx|much appreciated|appreciate (it|that|the help)|"
+        r"hi|hello|hey|good (morning|afternoon|evening))\b",
+        re.IGNORECASE,
+    )
     WORK_STYLE = re.compile(
         r"\b(like to work with|to work with him|what (is he|he's) like|what (does he|he) care about|"
         r"his values|his (working )?style|as a teammate|as a colleague|soft skills|personality)\b",
@@ -177,7 +181,7 @@ class ChatService:
 
     @staticmethod
     def is_thanks(question: str) -> bool:
-        """A message that opens with thanks, such as 'Thanks, this was helpful!'."""
+        """A message that opens with thanks or a hello, such as 'Thanks, this was helpful!' or 'Hi there'."""
         return bool(ChatService.THANKS.match(question))
 
     @staticmethod

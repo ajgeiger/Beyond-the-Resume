@@ -119,3 +119,10 @@ def test_a_thank_you_with_no_matching_passage_gets_the_fixed_thanks(make_runtime
     assert payload["status"] == "answered"
     assert payload["answer"] == ChatCopy.GREETING
     assert provider.calls == []
+
+
+def test_a_hello_with_no_matching_passage_gets_the_fixed_thanks(make_runtime):
+    provider = FakeChatProvider()
+    payload = make_runtime(provider).chat("Hi there!")
+    assert payload["answer"] == ChatCopy.GREETING
+    assert provider.calls == []
