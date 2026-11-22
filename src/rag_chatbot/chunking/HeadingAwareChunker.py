@@ -107,7 +107,7 @@ class HeadingAwareChunker:
         lead, rest = paragraph.split(": ", 1)
         words = f"{lead}:".split()
         if len(words) > self.MAX_LEAD_WORDS:
-            words = words[-self.MAX_LEAD_WORDS:]
+            words = words[-self.MAX_LEAD_WORDS :]
         lead = " ".join(words)
         # The lead-in has to leave room for at least one following sentence.
         if self.count_tokens(lead) > budget // 2:
