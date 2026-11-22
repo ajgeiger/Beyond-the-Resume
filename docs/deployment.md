@@ -4,7 +4,7 @@
 
 ```bash
 cd rag-chatbot
-gh repo create ajgeiger/rag-chatbot --public --source . --remote origin   # or --private
+gh repo create ajgeiger/Beyond-the-Resume --public --source . --remote origin   # or --private
 git push -u origin main
 git push -u origin feature/rag-chatbot
 gh pr create --base main --head feature/rag-chatbot --title "rag chatbot service" --fill

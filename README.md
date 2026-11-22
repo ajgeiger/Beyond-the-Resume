@@ -120,7 +120,7 @@ in `X-API-Key` or `Authorization: Bearer`.
 ## Client
 
 ```bash
-pip install "rag-chatbot @ git+https://github.com/ajgeiger/rag-chatbot"   # httpx only
+pip install "rag-chatbot @ git+https://github.com/ajgeiger/Beyond-the-Resume"   # httpx only
 ```
 
 ```python
