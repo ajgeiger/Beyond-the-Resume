@@ -24,4 +24,4 @@ The resume page shows Alex's full resume, including his role as Lead Applied AI 
 
 ## Ask
 
-The Ask page is a question box about Alex's projects and experience. Answers are written from his resume and project write ups. Visitors can ask about his work, the projects on the site, how he works, and what he would bring to a team.
+The Ask page is a question box about Alex's projects and experience. Answers are grounded in his resume, this site and his project write ups, and the chatbot does not make up details. Visitors can ask about his work, the projects on the site, how he works, and what he would bring to a team.

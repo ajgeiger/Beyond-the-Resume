@@ -1,7 +1,7 @@
 {
-  "index_version": "d26f2b1c9e07",
-  "fingerprint": "d26f2b1c9e07cf640bf73b3f8b1c3dd450317e734a6a365f9421f2c896fc0d83",
-  "documents_hash": "f0a0908f13f90d5f05937d3867a7d476d69d82ffcec56af2fd46ca6c82108ffa",
+  "index_version": "f52f7032b1e6",
+  "fingerprint": "f52f7032b1e66bb46c93a8be5e262bfb4931cfa2b96db10860ec6a09b30a667e",
+  "documents_hash": "d3ff4730e364952c77b7bcc43687baf5e8dbca442539b2fbb622a95a0cc3b1aa",
   "documents": [
     {
       "name": "Resume",
@@ -16,12 +16,12 @@
     {
       "name": "Portfolio site resume page",
       "path": "portfolio_site_resume.py",
-      "sha256": "7261db6f0cc58f2421c83cadb6dedc76f9af54ef3303e24736b057bcd34b12bb"
+      "sha256": "41a3e09fdd9dc9a482e131ff073c456d392dce5eeef06f1c1b2b106b6e8ca9de"
     },
     {
       "name": "Portfolio site README",
       "path": "portfolio_site_readme.md",
-      "sha256": "c995630a1243e5f61526b00404a635188ea353b62e6dd89cb3d23dee3e8150d0"
+      "sha256": "d006a1e9cb6434b086614ca949789708a8b95422c6864e858fbadd55eac2f0a9"
     },
     {
       "name": "Headline Radar README",
@@ -31,7 +31,7 @@
     {
       "name": "Portfolio site home page",
       "path": "portfolio_site_home.py",
-      "sha256": "ecc730bd25d4c48d3270ba7c7e8775bc052c3ae8294476bfedb48139af99e61c"
+      "sha256": "6c4ce547c1b43e98d043c9252887b831e19a2832141402b3f94735afe21d5bf7"
     },
     {
       "name": "Portfolio site projects page",
@@ -41,12 +41,12 @@
     {
       "name": "Portfolio site project write ups",
       "path": "portfolio_site_projects_registry.py",
-      "sha256": "a3d25c8dd7c666d1ec0b9c03367b572e0b50a02eec4f6aac3e98e45c2d27a0ea"
+      "sha256": "639d6bfb9d8f16a8bc477966aa0487cc986afcf511390efe4372c9887e8b014f"
     },
     {
       "name": "Portfolio site pages",
       "path": "portfolio_site_pages.md",
-      "sha256": "73fd83f33ecf0fda7abf0202f13f32abd02286951d62bf972eaa158273d7d396"
+      "sha256": "e51cee812aeea172923c76ec91eb3c8237ee10f227dc4b76ea4f5ef5889d64dd"
     },
     {
       "name": "Natural gas forecast README",
@@ -64,12 +64,12 @@
   },
   "chunk_count": 116,
   "pipeline_version": "3",
-  "built_at": "2026-11-20T15:23:21Z",
+  "built_at": "2026-11-22T02:15:53Z",
   "source_counts": {
     "Resume": 19,
-    "Portfolio site README": 29,
+    "Portfolio site README": 30,
     "Headline Radar README": 12,
-    "Portfolio site home page": 2,
+    "Portfolio site home page": 1,
     "Portfolio site projects page": 1,
     "Portfolio site project write ups": 2,
     "Portfolio site pages": 7,
