@@ -9,7 +9,8 @@ sources_file = "configs/sources.toml"
 [chunking]
 # Sizes are counted in the embedding model's own tokens.
 chunk_size_tokens = 160
-chunk_overlap_tokens = 32
+# Overlap is only used when a section has to be split.
+chunk_overlap_tokens = 16
 # Chunks shorter than this are dropped, such as a stray document title.
 min_chunk_tokens = 8
 # Paragraphs that share this share of their terms with an earlier paragraph are dropped.

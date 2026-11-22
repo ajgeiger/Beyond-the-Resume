@@ -49,7 +49,9 @@ class IngestionPipeline:
                 cleaned = (self.cleaner.clean(paragraph) for paragraph in section.paragraphs)
                 paragraphs = tuple(text for text in cleaned if text and deduplicator.is_new(text))
                 if paragraphs:
-                    sections.append(Section(section.source, self.cleaner.clean(section.title), paragraphs))
+                    header = self.cleaner.clean(section.header) if section.header else ""
+                    title = self.cleaner.clean(section.title)
+                    sections.append(Section(section.source, title, paragraphs, header=header))
         return sections
 
     def chunks(self) -> list[Chunk]:

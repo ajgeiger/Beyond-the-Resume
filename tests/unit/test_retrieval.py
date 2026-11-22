@@ -75,3 +75,12 @@ def test_reranker_reorders_and_reports_its_scores(runtime):
 def test_top_k_is_capped_by_settings(runtime):
     response = runtime.retrieve("Signature Aviation", top_k=999)
     assert len(response["results"]) <= runtime.settings.retrieval.max_top_k
+
+
+def test_tokenizer_keeps_slash_initials():
+    from rag_chatbot.retrieval.Tokenizer import Tokenizer
+
+    terms = Tokenizer.terms("What A/B testing has he done?")
+    assert "ab" in terms
+    assert "testing" in terms
+    assert "a" not in terms and "b" not in terms

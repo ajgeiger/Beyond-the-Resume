@@ -47,21 +47,87 @@ def test_pdf_reader_titles_each_role_on_its_own(tmp_path, monkeypatch):
         source,
         "text",
         lambda: (
-            "Alexander Geiger\nLead Applied AI Scientist\nPROFESSIONAL EXPERIENCE\n"
-            "Signature Aviation | Orlando, FL\nLead Applied AI Scientist Jul 2026 to Present\n"
-            "\u2022 Built a platform.\nSenior Data Scientist May 2022 to Jul 2026\n"
-            "\u2022 Built a pricing engine.\nEDUCATION\nSyracuse University\n"
+            "Alexander Geiger\nLead Applied AI Scientist\n"
+            "PROFESSIONAL SUMMARY\nLead Applied AI Scientist with 9 years in production ML.\n"
+            "PROFESSIONAL EXPERIENCE\n"
+            "Signature Aviation | Orlando, FL May 2022 to Present\n"
+            "Lead Applied AI Scientist\n"
+            "Promoted to Lead Applied AI Scientist in July 2026.\n"
+            "\u2022 Built a platform powering:\n"
+            "\u2022 Demand forecasting across bases.\n"
+            "\u2022 Dynamic pricing for hourly parking.\n"
+            "\u2022 Built the MLOps framework.\n"
+            "GHD | Buffalo, NY\n"
+            "Senior Data Scientist II Jul 2020 to May 2022\n"
+            "\u2022 Built physical AI for pipelines.\n"
+            "Data Scientist (earlier role) Aug 2018 to Jun 2019\n"
+            "Earlier Experience\n"
+            "Golden Oak Research | Founder | Current\n"
+            "\u2022 Wrote research notes.\n"
+            "EDUCATION\n"
+            "Syracuse University | Master of Science in Applied Data Science 2019 to 2022\n"
+            "CERTIFICATIONS\n"
+            "AWS Certified Solutions Architect - Associate Issued Apr 2025, expires Apr 2028\n"
+            "COMPETITIONS & ACHIEVEMENTS\n"
+            "Kaggle | Competitions Expert Current\n"
+            "NFL Big Data Bowl (Kaggle) Spring 2020\n"
         ),
     )
     sections = source.sections()
-    assert [item.title for item in sections] == [
-        "Name and current title",
-        "Professional experience > Signature Aviation, Orlando, FL > Lead Applied AI Scientist Jul 2026 to Present",
-        "Professional experience > Signature Aviation, Orlando, FL > Senior Data Scientist May 2022 to Jul 2026",
-        "Education",
-    ]
-    assert sections[1].paragraphs[0] == "Signature Aviation, Orlando, FL"
-    assert "Built a pricing engine." in sections[2].paragraphs
+    titles = [item.title for item in sections]
+    assert titles[0] == "Name and current title"
+    assert titles[1] == "Professional summary"
+    assert sections[1].header == "Professional summary"
+    assert titles[2] == ("Professional experience > Signature Aviation, Orlando, FL > Lead Applied AI Scientist")
+    assert titles[3] == "Professional experience > GHD, Buffalo, NY > Senior Data Scientist II"
+    assert titles[4] == ("Professional experience > GHD, Buffalo, NY > Data Scientist (earlier role)")
+    assert "Earlier Experience" in titles[5] and "Golden Oak Research" in titles[5]
+    assert "Syracuse University" in titles[6]
+    assert "AWS Certified Solutions Architect" in titles[7]
+    assert titles[8].endswith("Kaggle > Competitions Expert")
+    assert titles[9].endswith("NFL Big Data Bowl (Kaggle)")
+    assert sections[2].header == ("Signature Aviation, Orlando, FL. Lead Applied AI Scientist. May 2022 to Present")
+    assert sections[2].paragraphs[0] == "Promoted to Lead Applied AI Scientist in July 2026."
+    assert "Demand forecasting across bases." in sections[2].paragraphs[1]
+    assert "Dynamic pricing for hourly parking." in sections[2].paragraphs[1]
+    assert sections[2].paragraphs[1].startswith("Built a platform powering:")
+    assert sections[2].paragraphs[2] == "Built the MLOps framework."
+    assert sections[3].header == "GHD, Buffalo, NY. Senior Data Scientist II. Jul 2020 to May 2022"
+    assert sections[3].paragraphs == ("Built physical AI for pipelines.",)
+    assert "Aug 2018 to Jun 2019" in sections[4].paragraphs[0]
+    assert "Data Scientist (earlier role)" in sections[4].paragraphs[0]
+
+
+def test_chunker_prefixes_role_header_and_keeps_paragraphs(model):
+    chunker = HeadingAwareChunker(ChunkSettings(40, 8, min_chunk_tokens=1), model.count_tokens)
+    header = "GHD, Buffalo, NY. Senior Data Scientist II. Jul 2020 to May 2022"
+    short = "Built physical AI that detects pressure anomalies in pipelines."
+    other = "A later idea about sensors and SCADA telemetry."
+    chunks = chunker.chunk([Section("Resume", "Professional experience > GHD", (short, other), header=header)])
+    assert len(chunks) == 1
+    assert chunks[0].text.startswith(header)
+    assert short in chunks[0].text and other in chunks[0].text
+
+
+def test_chunker_keeps_a_fitting_paragraph_together(model):
+    chunker = HeadingAwareChunker(ChunkSettings(40, 4, min_chunk_tokens=1), model.count_tokens)
+    paragraph = "Built the MLOps framework for how models earn their way into production."
+    other = "Made trust a production requirement by monitoring data quality and job runs."
+    chunks = chunker.chunk([Section("Resume", "Signature Aviation", (paragraph, other))])
+    assert any(paragraph in item.text and other in item.text for item in chunks)
+
+
+def test_pipeline_keeps_a_cleaned_role_header(tmp_path, settings, model):
+    path = tmp_path / "resume.md"
+    path.write_text("# Role\n\nBuilt physical AI for oil and gas pipelines.\n", encoding="utf-8")
+    # Markdown has no header; this checks that an empty header stays empty after cleaning.
+    catalog = SourceCatalog((SourceSpec("Resume", "markdown", path),))
+    pipeline = IngestionPipeline(
+        SourceFactory.create(catalog), catalog, HeadingAwareChunker(settings.chunking, model.count_tokens)
+    )
+    sections = pipeline.sections()
+    assert sections
+    assert sections[0].header == ""
 
 
 @pytest.mark.parametrize("size,overlap", [(0, 0), (10, -1), (10, 10), (10, 11)])
@@ -84,12 +150,35 @@ def test_chunker_stays_under_size_and_within_headings(model):
 
 
 def test_chunker_overlaps_adjacent_chunks(model):
-    chunker = HeadingAwareChunker(ChunkSettings(10, 3, min_chunk_tokens=1), model.count_tokens)
-    section = Section("Resume", "Experience", ("One two three four five six. Seven eight nine ten eleven twelve.",))
+    chunker = HeadingAwareChunker(ChunkSettings(16, 6, min_chunk_tokens=1), model.count_tokens)
+    # Three units: the first two fill chunk one, and the short trailing unit overlaps.
+    section = Section(
+        "Resume",
+        "Experience",
+        ("One two three four five six.", "Short tail here.", "Seven eight nine ten eleven twelve thirteen fourteen."),
+    )
     chunks = chunker.chunk([section])
     assert len(chunks) == 2
-    assert chunks[1].text.startswith("four five six.")
-    assert chunks[1].token_count == 9
+    assert "One two three four five six." in chunks[0].text
+    assert "Short tail here." in chunks[0].text
+    assert chunks[1].text.startswith("Short tail here.")
+    assert "thirteen fourteen." in chunks[1].text
+
+
+def test_chunker_keeps_colon_lead_in_when_a_list_is_split(model):
+    chunker = HeadingAwareChunker(ChunkSettings(80, 0, min_chunk_tokens=1), model.count_tokens)
+    paragraph = (
+        "Built a platform powering: Demand forecasting across bases and versions. "
+        "Dynamic pricing for hourly parking across locations."
+    )
+    chunks = chunker.chunk(
+        [Section("Resume", "Signature Aviation", (paragraph,), header="Signature Aviation, Orlando, FL")]
+    )
+    assert len(chunks) == 2
+    assert all("Built a platform powering:" in item.text for item in chunks)
+    assert any("Demand forecasting" in item.text for item in chunks)
+    assert any("Dynamic pricing" in item.text for item in chunks)
+    assert not all("Demand forecasting" in item.text and "Dynamic pricing" in item.text for item in chunks)
 
 
 def test_chunker_drops_stray_short_titles(model):
@@ -112,6 +201,29 @@ def test_cleaner_removes_contacts_dashes_and_stale_title():
     assert "Lead Applied AI Scientist" in text
     assert not ContactScrubber.contains_contact(text)
     assert "\u2014" not in text and "\u2013" not in text
+
+
+def test_pipeline_preserves_role_headers(tmp_path, monkeypatch, settings, model):
+    path = tmp_path / "resume.pdf"
+    path.write_bytes(b"%PDF-1.4 test")
+    source = PdfSource(path, "Resume")
+    monkeypatch.setattr(
+        source,
+        "text",
+        lambda: (
+            "PROFESSIONAL EXPERIENCE\n"
+            "GHD | Buffalo, NY\n"
+            "Senior Data Scientist II Jul 2020 to May 2022\n"
+            "\u2022 Built physical AI that detects pressure anomalies in pipelines.\n"
+        ),
+    )
+    catalog = SourceCatalog((SourceSpec("Resume", "pdf", tmp_path / "resume.pdf"),))
+    pipeline = IngestionPipeline([source], catalog, HeadingAwareChunker(settings.chunking, model.count_tokens))
+    sections = pipeline.sections()
+    assert sections[0].header.startswith("GHD, Buffalo, NY. Senior Data Scientist II")
+    chunks = pipeline.chunks()
+    assert chunks
+    assert all(item.text.startswith(sections[0].header) for item in chunks)
 
 
 def test_pipeline_cleans_titles_and_text_before_chunking(source_file, settings, model):
