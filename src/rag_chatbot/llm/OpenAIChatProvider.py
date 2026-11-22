@@ -24,7 +24,7 @@ class OpenAIChatProvider(AbstractChatProvider):
         self,
         api_key: str,
         model: str = DEFAULT_MODEL,
-        max_tokens: int = 700,
+        max_tokens: int = 1024,
         client=None,
         base_url: str = "",
         extra_pricing=None,
@@ -48,9 +48,11 @@ class OpenAIChatProvider(AbstractChatProvider):
         usage = response.usage
         details = getattr(usage, "input_tokens_details", None)
         cached = getattr(details, "cached_tokens", 0) or 0
+        incomplete = getattr(response, "incomplete_details", None)
         return ChatReply(
             text=(response.output_text or "").strip(),
             model=self.model,
+            truncated=getattr(incomplete, "reason", "") == "max_output_tokens",
             usage=TokenUsage(
                 input_tokens=max((usage.input_tokens or 0) - cached, 0),
                 output_tokens=usage.output_tokens or 0,

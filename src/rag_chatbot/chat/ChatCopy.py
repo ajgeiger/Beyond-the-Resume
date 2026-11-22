@@ -6,8 +6,8 @@ class ChatCopy:
 
     NOT_COVERED = (
         "I don't have details on that, but I can tell you about Alex's resume, "
-        "his work at Signature Aviation and earlier roles, and his projects such as Headline Radar "
-        "and the News Topic Explorer."
+        "his work at Signature Aviation and earlier roles, and his projects such as Headline Radar, "
+        "the News Topic Explorer and the Natural Gas Price Forecast."
     )
     GREETING = "Thanks for taking the time to visit. Alex would be glad to connect through LinkedIn."
     DECLINED = (

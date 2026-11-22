@@ -20,7 +20,7 @@ class LlmSettings:
     rewrite_model: str = "claude-haiku-5-5"
     openai_model: str = "gpt-6-astra"
     base_url: str = ""
-    max_output_tokens: int = 700
+    max_output_tokens: int = 1024
     anthropic_api_key: str = field(default="", repr=False)
     openai_api_key: str = field(default="", repr=False)
     # Extra prices in US dollars per million tokens, keyed by model name.

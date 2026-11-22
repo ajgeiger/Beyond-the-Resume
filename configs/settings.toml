@@ -56,7 +56,8 @@ rewrite_model = "claude-haiku-5-5"
 openai_model = "gpt-6-astra"
 # Set to use any OpenAI compatible server (LLM_BASE_URL overrides it).
 base_url = ""
-max_output_tokens = 700
+# Room for a full answer. Answers are asked to stay near 100 to 150 words.
+max_output_tokens = 1024
 
 # Prices for models that are not in the built in table, in US dollars per million tokens.
 # Unknown models are charged at the highest known price, so the spend cap stays safe.

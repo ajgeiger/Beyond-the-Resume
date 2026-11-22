@@ -32,3 +32,10 @@ def test_rules_carry_the_content_rules():
     assert "150 words" in rules
     assert "ambitious, long-term teams" in rules
     assert "Question: " not in rules
+
+
+def test_rules_keep_earlier_answers_and_limit_the_closing():
+    rules = PromptBuilder.SYSTEM_RULES
+    assert "Treat your earlier answers as accurate" in rules
+    assert "Never end any other answer" in rules
+    assert "Every specific detail" in rules

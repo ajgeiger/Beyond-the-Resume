@@ -190,7 +190,7 @@ them (see `.env.example`):
 | `LLM_MODEL` | `claude-sonnet-5-5` | answer model for the active provider |
 | `LLM_REWRITE_MODEL` | `claude-haiku-5-5` | model for follow up rewriting |
 | `LLM_BASE_URL` | | any OpenAI compatible server, with `LLM_PROVIDER=openai` |
-| `MAX_OUTPUT_TOKENS` | `700` | answer length limit |
+| `MAX_OUTPUT_TOKENS` | `1024` | answer length limit |
 | `MONTHLY_BUDGET_USD` | `20` | spend cap per calendar month |
 | `USAGE_FILE` | `data/usage.json` | where monthly spend is recorded |
 | `CHATBOT_API_KEY` | | require a key on the protected routes |

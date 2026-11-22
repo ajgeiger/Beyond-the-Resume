@@ -5,6 +5,8 @@ import re
 
 from rag_chatbot.chat.ChatAnswer import ChatAnswer
 from rag_chatbot.chat.ChatCopy import ChatCopy
+from rag_chatbot.chat.SentenceTrimmer import SentenceTrimmer
+from rag_chatbot.guardrails.ClosingFilter import ClosingFilter
 from rag_chatbot.guardrails.CostTracker import CostTracker
 from rag_chatbot.guardrails.OutputGuard import OutputGuard
 from rag_chatbot.guardrails.QuestionGuard import QuestionGuard
@@ -28,8 +30,10 @@ class ChatService:
     4. CostTracker stops answer calls once the monthly cap is reached.
     5. The provider writes an answer from the retrieved passages, the conversation
        history and what is known about his experience.
-    6. OutputGuard blocks answers that break the content rules.
-    7. The citations field lists the retrieved passages (and any C ids still present in the answer).
+    6. An answer cut off at the token limit ends at its last full sentence.
+    7. OutputGuard blocks answers that break the content rules, and ClosingFilter
+       drops a thank you or LinkedIn line the question did not invite.
+    8. The citations field lists the retrieved passages (and any C ids still present in the answer).
     """
 
     CITATION = re.compile(r"\s*\[(C\d+(?:\s*,\s*C\d+)*)\]")
@@ -74,6 +78,8 @@ class ChatService:
         self.prompts = PromptBuilder()
         self.question_guard = QuestionGuard(max_question_chars)
         self.output_guard = OutputGuard()
+        self.closing_filter = ClosingFilter()
+        self.trimmer = SentenceTrimmer()
         self.rewriter = rewriter or HeuristicQueryRewriter()
         self.top_k = top_k
         self.history_turns = history_turns
@@ -108,15 +114,20 @@ class ChatService:
         cost = reply.usage.cost(self.provider.pricing) + rewritten.cost_usd
         self.tracker.record(cost)
 
-        reviewed = self.output_guard.review(reply.text)
+        text = reply.text
+        if reply.truncated:
+            LOGGER.warning("Answer reached the output token limit and was trimmed to its last sentence.")
+            text = self.trimmer.trim(text)
+        reviewed = self.output_guard.review(text)
         if not reviewed.allowed:
             LOGGER.warning("Answer blocked by the output guard: %s", reviewed.reason)
             return ChatAnswer(reviewed.text, "blocked", cost_usd=cost)
-        if self.is_not_covered(reviewed.text):
-            return ChatAnswer(self.strip_citations(reviewed.text), "not_covered", cost_usd=cost)
+        text = self.closing_filter.apply(checked.text, reviewed.text)
+        if self.is_not_covered(text):
+            return ChatAnswer(self.strip_citations(text), "not_covered", cost_usd=cost)
 
-        sources = self.cited(reviewed.text, hits) or tuple(hits[:3])
-        return ChatAnswer(self.strip_citations(reviewed.text), "answered", sources, cost)
+        sources = self.cited(text, hits) or tuple(hits[:3])
+        return ChatAnswer(self.strip_citations(text), "answered", sources, cost)
 
     def retrieve(
         self, question: str, history: list[dict], top_k: int, search_query: str | None = None

@@ -104,3 +104,48 @@ def test_extra_pricing_from_config_is_used():
         "key", model="bigger-model", extra_pricing={"bigger-model": {"input": 1.0, "output": 4.0}}
     )
     assert provider.pricing.cost(input_tokens=1_000_000, output_tokens=1_000_000) == 5.0
+
+
+def anthropic_response(text, stop_reason="end_turn"):
+    return SimpleNamespace(
+        content=[SimpleNamespace(type="thinking", thinking="..."), SimpleNamespace(type="text", text=text)],
+        stop_reason=stop_reason,
+        usage=SimpleNamespace(
+            input_tokens=10, output_tokens=5, cache_creation_input_tokens=0, cache_read_input_tokens=0
+        ),
+    )
+
+
+def test_anthropic_payload_turns_thinking_off():
+    payload = AnthropicChatProvider("key").payload(request())
+    assert payload["thinking"] == {"type": "between_tools"}
+    assert payload["max_tokens"] == 1024
+
+
+def test_anthropic_reply_at_the_token_limit_is_marked_truncated():
+    response = anthropic_response("He used Databricks and", "max_tokens")
+    client = SimpleNamespace(messages=SimpleNamespace(create=lambda **_kwargs: response))
+    reply = AnthropicChatProvider("", client=client).complete(request())
+    assert reply.truncated and reply.text == "He used Databricks and"
+
+
+def test_anthropic_retries_without_thinking_when_the_model_rejects_it():
+    import anthropic
+    import httpx
+
+    calls = []
+
+    def create(**kwargs):
+        calls.append(kwargs)
+        if "thinking" in kwargs:
+            raw = httpx.Response(400, request=httpx.Request("POST", "https://api.anthropic.com/v1/messages"))
+            raise anthropic.BadRequestError("thinking is not supported for this model", response=raw, body=None)
+        return anthropic_response("He leads applied AI.")
+
+    client = SimpleNamespace(messages=SimpleNamespace(create=create))
+    provider = AnthropicChatProvider("", client=client)
+    reply = provider.complete(request())
+    assert reply.text == "He leads applied AI." and not reply.truncated
+    assert len(calls) == 2 and "thinking" not in calls[1]
+    provider.complete(request())
+    assert len(calls) == 3
