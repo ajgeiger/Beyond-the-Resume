@@ -41,6 +41,40 @@ def test_python_reader_ignores_docstrings_and_short_literals(tmp_path):
     assert PythonTextSource(path, "Script").sections()[0].paragraphs == ("Built forecasting models for 100 locations.",)
 
 
+def test_python_reader_fills_profile_f_strings_and_drops_date_titles(tmp_path):
+    (tmp_path / "portfolio_site_profile.py").write_text(
+        'class Profile:\n    ROLE = "Lead Applied AI Scientist"\n    EMPLOYER = "Signature Aviation"\n',
+        encoding="utf-8",
+    )
+    path = tmp_path / "portfolio_site_home_copy.py"
+    path.write_text(
+        "from config.Profile import Profile\n\n"
+        "ABOUT = (\n"
+        "    f\"I'm the {Profile.ROLE} at {Profile.EMPLOYER}. I built the company's platform.\"\n"
+        ")\n"
+        'DATES = "May 2022 to Present"\n'
+        'TITLE = "Senior Data Scientist II"\n',
+        encoding="utf-8",
+    )
+    paragraphs = PythonTextSource(path, "About").sections()[0].paragraphs
+    assert paragraphs == ("I'm the Lead Applied AI Scientist at Signature Aviation. I built the company's platform.",)
+    assert all("May 2022 to Present" not in item for item in paragraphs)
+    assert all("Senior Data Scientist II" not in item or "built" in item.lower() for item in paragraphs)
+
+
+def test_python_reader_can_keep_only_named_assignments(tmp_path):
+    path = tmp_path / "home_copy.py"
+    path.write_text(
+        'HERO_LEAD = "Hi, thanks for visiting the site today."\n'
+        'ABOUT_PARAGRAPHS = ("I built the MLOps framework for production models.",)\n',
+        encoding="utf-8",
+    )
+    sections = PythonTextSource(path, "About", ("ABOUT_PARAGRAPHS",)).sections()
+    assert len(sections) == 1
+    assert sections[0].title.endswith("About")
+    assert sections[0].paragraphs == ("I built the MLOps framework for production models.",)
+
+
 def test_pdf_reader_titles_each_role_on_its_own(tmp_path, monkeypatch):
     source = PdfSource(tmp_path / "resume.pdf", "Resume")
     monkeypatch.setattr(
@@ -80,22 +114,23 @@ def test_pdf_reader_titles_each_role_on_its_own(tmp_path, monkeypatch):
     assert sections[1].header == "Professional summary"
     assert titles[2] == ("Professional experience > Signature Aviation, Orlando, FL > Lead Applied AI Scientist")
     assert titles[3] == "Professional experience > GHD, Buffalo, NY > Senior Data Scientist II"
-    assert titles[4] == ("Professional experience > GHD, Buffalo, NY > Data Scientist (earlier role)")
-    assert "Earlier Experience" in titles[5] and "Golden Oak Research" in titles[5]
-    assert "Syracuse University" in titles[6]
-    assert "AWS Certified Solutions Architect" in titles[7]
-    assert titles[8].endswith("Kaggle > Competitions Expert")
-    assert titles[9].endswith("NFL Big Data Bowl (Kaggle)")
-    assert sections[2].header == ("Signature Aviation, Orlando, FL. Lead Applied AI Scientist. May 2022 to Present")
-    assert sections[2].paragraphs[0] == "Promoted to Lead Applied AI Scientist in July 2026."
-    assert "Demand forecasting across bases." in sections[2].paragraphs[1]
-    assert "Dynamic pricing for hourly parking." in sections[2].paragraphs[1]
-    assert sections[2].paragraphs[1].startswith("Built a platform powering:")
-    assert sections[2].paragraphs[2] == "Built the MLOps framework."
-    assert sections[3].header == "GHD, Buffalo, NY. Senior Data Scientist II. Jul 2020 to May 2022"
+    assert all("earlier role" not in title.lower() for title in titles)
+    assert "Earlier Experience" in titles[4] and "Golden Oak Research" in titles[4]
+    assert "Syracuse University" in titles[5]
+    assert "AWS Certified Solutions Architect" in titles[6]
+    assert titles[7].endswith("Kaggle > Competitions Expert")
+    assert titles[8].endswith("NFL Big Data Bowl (Kaggle)")
+    assert sections[2].header.startswith(
+        "Signature Aviation, Orlando, FL. Lead Applied AI Scientist. May 2022 to Present"
+    )
+    assert "Promoted to Lead Applied AI Scientist in July 2026." in sections[2].header
+    assert "Built a platform powering:" in " ".join(sections[2].paragraphs)
+    assert "Demand forecasting across bases." in " ".join(sections[2].paragraphs)
+    assert "Dynamic pricing for hourly parking." in " ".join(sections[2].paragraphs)
+    assert "Built the MLOps framework." in sections[2].paragraphs
+    assert sections[3].header.startswith("GHD, Buffalo, NY. Senior Data Scientist II. Jul 2020 to May 2022")
+    assert "Data Scientist (earlier role). Aug 2018 to Jun 2019" in sections[3].header
     assert sections[3].paragraphs == ("Built physical AI for pipelines.",)
-    assert "Aug 2018 to Jun 2019" in sections[4].paragraphs[0]
-    assert "Data Scientist (earlier role)" in sections[4].paragraphs[0]
 
 
 def test_chunker_prefixes_role_header_and_keeps_paragraphs(model):

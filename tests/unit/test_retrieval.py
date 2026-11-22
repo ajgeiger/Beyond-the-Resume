@@ -84,3 +84,10 @@ def test_tokenizer_keeps_slash_initials():
     assert "ab" in terms
     assert "testing" in terms
     assert "a" not in terms and "b" not in terms
+
+
+def test_query_expander_links_champion_to_mlops():
+    terms = QueryExpander.expand("How are models promoted to champion?")
+    assert "champion" in terms
+    assert "challenger" in terms
+    assert "mlop" in terms

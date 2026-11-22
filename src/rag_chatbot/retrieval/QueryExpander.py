@@ -36,6 +36,8 @@ class QueryExpander:
         "built": ("build", "developed", "designed"),
         "build": ("built", "developed", "designed"),
         "pricing": ("price",),
+        "champion": ("challenger", "compete", "mlops"),
+        "challenger": ("champion", "compete", "mlops"),
     }
 
     @classmethod

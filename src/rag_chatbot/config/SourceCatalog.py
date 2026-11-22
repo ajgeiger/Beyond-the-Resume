@@ -29,6 +29,7 @@ class SourceCatalog:
                 item["kind"],
                 raw_dir / item["file"],
                 origin_root / item["origin"] if item.get("origin") else None,
+                tuple(item.get("assignments", ())),
             )
             for item in values["sources"]
         )

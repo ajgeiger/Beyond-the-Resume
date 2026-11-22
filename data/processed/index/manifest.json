@@ -1,17 +1,12 @@
 {
-  "index_version": "2896905e808f",
-  "fingerprint": "2896905e808fd0107867cd2912c0e464beb75af947aaae1a1435dd277d696050",
-  "documents_hash": "009c048f4336923e6eacabfe179be6ca310328e649fda13d75a2e6e3d8ebe7a7",
+  "index_version": "289ecec270c6",
+  "fingerprint": "289ecec270c6f31959f9471e2e9282112f0545f2b0930543b69abced91e4b53d",
+  "documents_hash": "c7b2dab9d9c4713e9e5090a2c00987b59fde7d5affb07d35e9c863e48b1bd384",
   "documents": [
     {
       "name": "Resume",
       "path": "resume.pdf",
       "sha256": "738ce33ecc8404cf9495d292c12b21f2ca1714460a122ceeaef4ac3b3851f567"
-    },
-    {
-      "name": "Portfolio site resume page",
-      "path": "portfolio_site_resume.py",
-      "sha256": "9d74845199aad717ecd8bb089f1e025c84a1ac40a3b22866d29df21c37aac9e3"
     },
     {
       "name": "Portfolio site README",
@@ -22,6 +17,16 @@
       "name": "Headline Radar README",
       "path": "headline_radar_readme.md",
       "sha256": "ad928644a6b16044f2510a59fe961e200dd9f3bb169672927c1e84919536c4c7"
+    },
+    {
+      "name": "Portfolio site profile",
+      "path": "portfolio_site_profile.py",
+      "sha256": "65499074ec455c6bb85f92e45f4f36c17071347236c3569f94d273713b71ed4a"
+    },
+    {
+      "name": "Portfolio site about section",
+      "path": "portfolio_site_home_copy.py",
+      "sha256": "21181638294277ddc0f34ad67a03657a91c5f8f426f637723f9227617fe22781"
     },
     {
       "name": "Portfolio site home page",
@@ -58,13 +63,13 @@
     "duplicate_overlap": 0.8
   },
   "chunk_count": 119,
-  "pipeline_version": "4",
-  "built_at": "2026-11-22T13:50:25Z",
+  "pipeline_version": "5",
+  "built_at": "2026-11-22T14:06:51Z",
   "source_counts": {
-    "Resume": 23,
-    "Portfolio site resume page": 1,
+    "Resume": 22,
     "Portfolio site README": 28,
     "Headline Radar README": 12,
+    "Portfolio site about section": 2,
     "Portfolio site home page": 1,
     "Portfolio site projects page": 1,
     "Portfolio site project write ups": 2,

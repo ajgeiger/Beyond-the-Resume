@@ -12,3 +12,4 @@ class SourceSpec:
     kind: str
     path: Path
     origin: Path | None = None
+    assignments: tuple[str, ...] = ()

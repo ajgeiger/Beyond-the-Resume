@@ -1,5 +1,5 @@
 {
-  "index_version": "2896905e808f",
+  "index_version": "289ecec270c6",
   "model": "sentence-transformers/all-MiniLM-L6-v2",
   "chunk_count": 119,
   "reports": [
@@ -8,10 +8,10 @@
       "questions": 29,
       "recall_at_k": {
         "1": 0.7586,
-        "3": 0.8276,
+        "3": 0.7931,
         "5": 0.931
       },
-      "mrr": 0.8098,
+      "mrr": 0.8069,
       "off_topic_questions": 5,
       "off_topic_empty": 0.6,
       "misses": [
@@ -25,15 +25,16 @@
       "recall_at_k": {
         "1": 0.5862,
         "3": 0.7241,
-        "5": 0.7931
+        "5": 0.7586
       },
-      "mrr": 0.6667,
+      "mrr": 0.658,
       "off_topic_questions": 5,
       "off_topic_empty": 0.8,
       "misses": [
         "Where did he get his master's degree?",
         "What did he study as an undergraduate?",
         "How did he build the dynamic pricing system for hourly parking?",
+        "What forecasting models has he put into production?",
         "Give me a short summary of his background.",
         "How are sentence embeddings pooled from the transformer output?",
         "How was the topic tree made balanced at the top level?"
@@ -44,10 +45,10 @@
       "questions": 29,
       "recall_at_k": {
         "1": 0.7241,
-        "3": 0.8276,
+        "3": 0.7931,
         "5": 0.931
       },
-      "mrr": 0.7943,
+      "mrr": 0.7856,
       "off_topic_questions": 5,
       "off_topic_empty": 0.6,
       "misses": [

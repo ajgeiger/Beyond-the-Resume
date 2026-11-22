@@ -44,6 +44,7 @@ class PdfSource(AbstractSource):
     )
     HEADER_TITLE = "Name and current title"
     EARLIER_EXPERIENCE = "Earlier Experience"
+    ROLE_NOTE_START = re.compile(r"^(Promoted|Reports)\b", re.IGNORECASE)
 
     def text(self) -> str:
         reader = PdfReader(str(self.path))
@@ -67,18 +68,36 @@ class PdfSource(AbstractSource):
         def close(*, keep_company: bool = False) -> None:
             nonlocal paragraphs, collecting_subs, company, role, dates
             header = role_header() if in_experience() else ""
-            body = tuple(paragraphs)
+            body = list(paragraphs)
+            # A short promotion note is context for the whole role, not a
+            # standalone chunk that can outrank the work itself.
+            if in_experience() and body and PdfSource.ROLE_NOTE_START.match(body[0]):
+                first, _, remainder = body[0].partition(". ")
+                if first and not first.endswith("."):
+                    first = f"{first}."
+                header = ". ".join(part for part in (header, first) if part)
+                if remainder:
+                    body[0] = remainder
+                else:
+                    body = body[1:]
+            body_tuple = tuple(body)
             # Education, certs, competitions, and roles with no bullets still need a paragraph.
-            if not body and role_header():
-                item = role_header()
-                if heading and heading not in item:
-                    item = f"{heading}. {item}"
-                body, header = (item,), ""
+            if not body_tuple and role_header():
+                # A title-only earlier role stays with the same company's main role
+                # so a short dates line does not outrank the work.
+                earlier = ". ".join(part for part in (role, dates) if part)
+                if in_experience() and PdfSource.merge_same_company(sections, company, earlier):
+                    body_tuple = ()
+                else:
+                    item = role_header()
+                    if heading and heading not in item:
+                        item = f"{heading}. {item}"
+                    body_tuple, header = (item,), ""
             elif not header and heading != self.HEADER_TITLE:
                 header = heading
-            if body:
+            if body_tuple:
                 title = role_title() if (company or role or group) else heading
-                sections.append(Section(self.name, title, body, header=header))
+                sections.append(Section(self.name, title, body_tuple, header=header))
             paragraphs = []
             collecting_subs = False
             if keep_company:
@@ -134,6 +153,20 @@ class PdfSource(AbstractSource):
                 paragraphs[-1] = f"{paragraphs[-1]} {line}"
         close()
         return sections
+
+    @staticmethod
+    def merge_same_company(sections: list[Section], company: str, item: str) -> bool:
+        """Append a title-only role to the previous section at the same company."""
+        if not sections or not company:
+            return False
+        previous = sections[-1]
+        if company not in previous.title and not previous.header.startswith(company):
+            return False
+        # Keep the earlier title in the header so it does not become a tiny
+        # leftover chunk that outranks the work at this company.
+        header = ". ".join(part for part in (previous.header, item) if part)
+        sections[-1] = Section(previous.source, previous.title, previous.paragraphs, header=header)
+        return True
 
     def pipe_fields(self, line: str, experience: bool, group: str) -> tuple[str, str, str, str]:
         """Turn a pipe line into company, role, dates and the current group name."""
