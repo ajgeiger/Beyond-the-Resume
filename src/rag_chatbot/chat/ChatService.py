@@ -42,6 +42,7 @@ class ChatService:
         r"([,!. ]+(hi|hello|hey|thanks|thank you|thanks for having me))*[,!. ]*$",
         re.IGNORECASE,
     )
+    THANKS = re.compile(r"^\s*(thanks|thank you|thx|much appreciated|appreciate (it|that|the help))\b", re.IGNORECASE)
     WORK_STYLE = re.compile(
         r"\b(like to work with|to work with him|what (is he|he's) like|what (does he|he) care about|"
         r"his values|his (working )?style|as a teammate|as a colleague|soft skills|personality)\b",
@@ -95,6 +96,9 @@ class ChatService:
 
         rewritten = self.rewriter.rewrite(checked.text, history)
         hits = self.retrieve(checked.text, history, top_k or self.top_k, rewritten.query)
+        if not hits and self.is_thanks(checked.text):
+            self.charge(rewritten.cost_usd)
+            return ChatAnswer(ChatCopy.GREETING, "answered", cost_usd=rewritten.cost_usd)
         if not hits and not self.may_answer_without_hits(checked.text):
             self.charge(rewritten.cost_usd)
             return ChatAnswer(ChatCopy.NOT_COVERED, "not_covered", cost_usd=rewritten.cost_usd)
@@ -170,6 +174,11 @@ class ChatService:
     @staticmethod
     def is_greeting(question: str) -> bool:
         return bool(ChatService.GREETING.fullmatch(question.strip()))
+
+    @staticmethod
+    def is_thanks(question: str) -> bool:
+        """A message that opens with thanks, such as 'Thanks, this was helpful!'."""
+        return bool(ChatService.THANKS.match(question))
 
     @staticmethod
     def is_work_style(question: str) -> bool:

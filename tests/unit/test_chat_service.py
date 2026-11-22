@@ -111,3 +111,11 @@ def test_recent_history_keeps_the_last_ten_turns_and_caps_length(make_runtime):
     assert len(recent) == 20
     assert recent[0]["content"].startswith("question 2")
     assert all(len(item["content"]) <= 20 for item in recent)
+
+
+def test_a_thank_you_with_no_matching_passage_gets_the_fixed_thanks(make_runtime):
+    provider = FakeChatProvider()
+    payload = make_runtime(provider).chat("Thanks, this was really helpful!")
+    assert payload["status"] == "answered"
+    assert payload["answer"] == ChatCopy.GREETING
+    assert provider.calls == []
