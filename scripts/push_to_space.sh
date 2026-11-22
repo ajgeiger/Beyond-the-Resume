@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Upload the committed tree to a Hugging Face Docker Space.
 #
-#   SPACE_ID=your-user/rag-chatbot bash scripts/push_to_space.sh
+#   SPACE_ID=your-user/beyond-the-resume bash scripts/push_to_space.sh
 #
 # Needs: huggingface_hub (pip install huggingface_hub), and either `hf auth login`
 # or HF_TOKEN in the environment. Uploads only files tracked by git at HEAD, with
@@ -10,7 +10,7 @@
 set -euo pipefail
 
 if [[ -z "${SPACE_ID:-}" ]]; then
-    echo "Set SPACE_ID, for example: make space-push SPACE_ID=your-user/rag-chatbot" >&2
+    echo "Set SPACE_ID, for example: make space-push SPACE_ID=your-user/beyond-the-resume" >&2
     exit 1
 fi
 

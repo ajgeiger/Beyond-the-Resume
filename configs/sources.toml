@@ -32,6 +32,20 @@ skipped_sections = [
 find = "I am a Lead Data Scientist."
 replace = "I am a Lead Applied AI Scientist."
 
+# The resume source still lists the old website.
+[[corrections]]
+find = "goldenoakresearch.com"
+replace = "ajgeiger.com"
+
+# The resume source still has the old summary. These match the published resume.
+[[corrections]]
+find = "Applied AI scientist with 9+ years"
+replace = "Lead Applied AI Scientist with 9+ years"
+
+[[corrections]]
+find = "to deliver dynamic pricing and forecasting across 100+ locations, protecting millions in margin."
+replace = "to deliver measurable net revenue."
+
 [[sources]]
 name = "Resume"
 kind = "pdf"

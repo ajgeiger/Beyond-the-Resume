@@ -1,5 +1,10 @@
 # Beyond the Resume
 
+![Beyond the Resume, a chatbot about my projects and experience](docs/images/beyond-the-resume.png)
+
+**Try it live:** ask it a question on the [Ask page at ajgeiger.com](https://ajgeiger.com/ask).
+The project write up is at [ajgeiger.com/projects/rag-chatbot](https://ajgeiger.com/projects/rag-chatbot).
+
 A chatbot you can ask about my experience, skills and projects. It searches my
 resume and my project write ups with keyword and semantic search together,
 then Claude Sonnet answers from what it found.
@@ -58,10 +63,13 @@ Answering a question (`POST /chat`):
    which still go to the model.
 5. Claude Sonnet gets fixed instructions, the retrieved passages labeled C1,
    C2 and so on, the last 10 turns of history, and the question. The
-   instructions are cached with Anthropic prompt caching.
+   instructions are cached with Anthropic prompt caching. Thinking is turned
+   off for these short answers, and an answer that still reaches the token
+   limit is cut back to its last full sentence.
 6. An output guard blocks answers that contain contact details, job seeking
    language or pay talk, and tidies the rest (long dashes and emoji removed,
-   the graduate school always named Syracuse University).
+   the graduate school always named Syracuse University). A thank you or
+   LinkedIn line is removed unless the visitor greeted or thanked the bot.
 7. The response includes the answer, a status, and citations. The model is
    told not to show citation tags, so the citations are normally the top three
    retrieved passages. The Ask page does not display them.
@@ -144,6 +152,8 @@ make eval             # recall at k and MRR, written to evaluation/results/
 | `GET /health` | | index version and chunk count, always open |
 | `GET /info` | | models, chunking, retrieval settings, spend cap state |
 
+![The API docs page for Beyond the Resume](docs/images/api-docs.png)
+
 `status` is one of `answered`, `not_covered`, `declined`, `blocked`, `budget`
 or `error`. `history` takes up to 20 messages, oldest first. When
 `CHATBOT_API_KEY` is set, every route except `/health` needs it in `X-API-Key`
@@ -213,8 +223,7 @@ lint and tests on Python 3.12, and checks that the client installs with httpx
 only on Python 3.11.
 
 `evaluation/results/retrieval_eval_results.json` is the last saved retrieval
-evaluation. It was run on an earlier, smaller index, so run `make eval` to
-get numbers for the current one.
+evaluation, run on the current index. Run `make eval` again after rebuilding.
 
 ## Deployment
 
@@ -232,7 +241,7 @@ the Anthropic console.
 The portfolio site needs `CHATBOT_API_URL` set to the service address and the
 same `CHATBOT_API_KEY`.
 
-The same image also runs as a Hugging Face Docker Space with
-`make space-push SPACE_ID=user/name`. See
+The same image can also run on a Hugging Face Docker Space as an optional
+second host, with `make space-push SPACE_ID=user/name`. See
 [docs/deployment.md](docs/deployment.md) and
 [docs/architecture.md](docs/architecture.md) for more detail.

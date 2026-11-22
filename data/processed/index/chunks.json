@@ -3,16 +3,16 @@
     "chunk_id": "resume-001",
     "source": "Resume",
     "section": "Name and current title",
-    "text": "ALEXANDER J. GEIGER Lead Applied AI Scientist Orlando, FL linkedin.com/in/ajgeiger • github.com/ajgeiger • kaggle.com/alexgeiger • goldenoakresearch.com",
-    "token_count": 50,
+    "text": "ALEXANDER J. GEIGER Lead Applied AI Scientist Orlando, FL linkedin.com/in/ajgeiger • github.com/ajgeiger • kaggle.com/alexgeiger • ajgeiger.com",
+    "token_count": 47,
     "position": 0
   },
   {
     "chunk_id": "resume-002",
     "source": "Resume",
     "section": "Professional summary",
-    "text": "Applied AI scientist with 9+ years of experience designing and deploying machine learning systems that quantify customer value, forecast demand, and optimize pricing to maximize net revenue. Builds production MLOps frameworks in Databricks and MLflow for a global private aviation network and owns the model lifecycle from feature engineering, experimentation, and backtesting through deployment, monitoring, and governance. Works across commercial and technical teams to deliver dynamic pricing and forecasting across 100+ locations, protecting millions in margin.",
-    "token_count": 101,
+    "text": "Lead Applied AI Scientist with 9+ years of experience designing and deploying machine learning systems that quantify customer value, forecast demand, and optimize pricing to maximize net revenue. Builds production MLOps frameworks in Databricks and MLflow for a global private aviation network and owns the model lifecycle from feature engineering, experimentation, and backtesting through deployment, monitoring, and governance. Works across commercial and technical teams to deliver measurable net revenue.",
+    "token_count": 92,
     "position": 1
   },
   {
@@ -162,16 +162,16 @@
   {
     "chunk_id": "portfolio-site-readme-002",
     "source": "Portfolio site README",
-    "section": "The website",
-    "text": "/. Page: Home. What it does: Short introduction, background (Lead Applied AI Scientist at Signature Aviation, the enterprise AI platform, Syracuse University), featured projects with numbers read from their data, how I work, about and contact links. /projects. Page: Projects. What it does: One card per registered project: screenshot, summary, tags, headline numbers, a link to the live page and to the code. /resume. Page: Resume. What it does: The full resume as a web document, section by section and word for word, with the PDF download. It prints cleanly. /ask. Page: Ask.",
-    "token_count": 126,
+    "section": "Alex Geiger, Lead Applied AI Scientist: Portfolio Site",
+    "text": "gradient boosting and Greykite compete with a naive baseline over three horizons, built on rolling backtests of public futures, weather and storage data. The third is Beyond the Resume: a retrieval augmented chatbot behind the Ask page, which answers from my resume, this site and my project READMEs.",
+    "token_count": 62,
     "position": 20
   },
   {
     "chunk_id": "portfolio-site-readme-003",
     "source": "Portfolio site README",
     "section": "The website",
-    "text": "It prints cleanly. /ask. Page: Ask. What it does: Questions about my projects and experience, answered from my resume and project READMEs, with suggested questions and a short note on the method. /projects/news-topic-explorer. Page: News Topic Explorer. What it does: A short case study (question, data, approach, key findings) above the live explorer. /projects/natural-gas-price-forecast. Page: Natural Gas Price Forecast. What it does: The case study and headline error measures, then the active predictions in production, the tournament leaderboard with event winners and a collapsible model scoreboard, and the model selection backtests.",
+    "text": "/. Page: Home. What it does: Short introduction, background (Lead Applied AI Scientist at Signature Aviation, the enterprise AI platform, Syracuse University), featured projects with numbers read from their data, how I work, about and contact links. /projects. Page: Projects. What it does: One card per registered project: screenshot, summary, tags, headline numbers, a link to the live page and to the code. /resume. Page: Resume. What it does: The full resume as a web document, word for word: a header band with links and the PDF download, headline numbers from the resume, a role timeline, and skills, education, certifications and competitions beside it. It prints cleanly. /ask. Page: Ask.",
     "token_count": 126,
     "position": 21
   },
@@ -179,7 +179,7 @@
     "chunk_id": "portfolio-site-readme-004",
     "source": "Portfolio site README",
     "section": "The website",
-    "text": "then the active predictions in production, the tournament leaderboard with event winners and a collapsible model scoreboard, and the model selection backtests. Every page shares a sticky header (Home, Projects, Resume, Ask, About, Contact), a footer with GitHub and Kaggle links, and a layout that adapts down to phone width. Numbers on the home and projects pages are computed from each project's data when the site starts, so they never drift from the app. The resume PDF is served from assets/files/Alexander_Geiger_Resume.pdf. The home page hero, the About section and the resume page link to it with \"Download resume (PDF)\".",
+    "text": "It prints cleanly. /ask. Page: Ask. What it does: Questions about my projects and experience, answered from my resume and project READMEs, with suggested questions and a short note on the method. /projects/news-topic-explorer. Page: News Topic Explorer. What it does: A short case study (question, data, approach, key findings) above the live explorer. /projects/natural-gas-price-forecast. Page: Natural Gas Price Forecast. What it does: The case study and headline error measures, then the active predictions in production, the tournament leaderboard with event winners and a collapsible model scoreboard, and the model selection backtests. /projects/rag-chatbot. Page: Beyond the Resume.",
     "token_count": 126,
     "position": 22
   },
@@ -187,71 +187,71 @@
     "chunk_id": "portfolio-site-readme-005",
     "source": "Portfolio site README",
     "section": "The website",
-    "text": "The home page hero, the About section and the resume page link to it with \"Download resume (PDF)\". The resume page text lives in config/Resume.py (built from ResumeEmployer, ResumeRole and ResumeItem entries) and matches the PDF. The phone number and personal email are only in the PDF.",
-    "token_count": 73,
+    "text": "/projects/rag-chatbot. Page: Beyond the Resume. What it does: A short case study of the Beyond-the-Resume service behind the Ask page, then the steps from question to answer, its guardrails and its stack. Every page shares a sticky header (Home, Projects, Resume, Ask, About, Contact), a footer with GitHub and Kaggle links, and a layout that adapts down to phone width. Numbers on the home and projects pages are computed from each project's data when the site starts, so they never drift from the app. The Beyond the Resume card is the exception: its numbers are settings of the rag-chatbot service, kept in config/ChatbotCopy.py.",
+    "token_count": 126,
     "position": 23
   },
   {
     "chunk_id": "portfolio-site-readme-006",
     "source": "Portfolio site README",
-    "section": "Ask page",
-    "text": "The Ask page is a thin front end for my separate rag-chatbot service, which does the retrieval (hybrid BM25 and MiniLM search over chunked documents) and calls Claude or an OpenAI model. The page talks to it through the service's httpx only client, rag_chatbot_client, and posts each question to POST /chat. CHATBOT_API_URL. Default: http://127.0.0.1:8070. Purpose: Where the service runs, locally or on a Hugging Face Space. CHATBOT_API_KEY. Default: empty. Purpose: Sent as X-API-Key when the service requires one. CHATBOT_TIMEOUT. Default: 45. Purpose: Seconds to wait for an answer.",
-    "token_count": 126,
+    "section": "The website",
+    "text": "Resume card is the exception: its numbers are settings of the rag-chatbot service, kept in config/ChatbotCopy.py. The resume PDF is served from assets/files/Alexander_Geiger_Resume.pdf. The home page hero, the About section and the resume page link to it with \"Download resume (PDF)\". The resume page text lives in config/Resume.py (built from ResumeEmployer, ResumeRole and ResumeItem entries) and matches the PDF. The phone number and personal email are only in the PDF.",
+    "token_count": 124,
     "position": 24
   },
   {
     "chunk_id": "portfolio-site-readme-007",
     "source": "Portfolio site README",
     "section": "Ask page",
-    "text": "CHATBOT_TIMEOUT. Default: 45. Purpose: Seconds to wait for an answer. A sleeping Space needs a moment to start. When the service cannot be reached the page stays up: the answer says so plainly, the status card shows Offline, and it checks again every minute.",
-    "token_count": 59,
+    "text": "The Ask page is a thin front end for my separate Beyond-the-Resume service, which does the retrieval (hybrid BM25 and MiniLM search over chunked documents) and calls Claude or an OpenAI model. The page talks to it through the service's httpx only client, rag_chatbot_client, and posts each question to POST /chat. CHATBOT_API_URL. Default: http://127.0.0.1:8070. Purpose: Where the service runs, locally or on a Hugging Face Space. CHATBOT_API_KEY. Default: empty. Purpose: Sent as X-API-Key when the service requires one. CHATBOT_TIMEOUT. Default: 45.",
+    "token_count": 126,
     "position": 25
   },
   {
     "chunk_id": "portfolio-site-readme-008",
     "source": "Portfolio site README",
-    "section": "Add a project",
-    "text": "Projects come from ProjectRegistry. Adding one takes two steps and no changes to the home page, the projects index or the navigation: Write a page class that extends AbstractProjectPage. It needs layout(), register_callbacks(app) and highlights(), a short list of (value, label) numbers for its card. Add one Project entry to ProjectRegistry.default_projects with a slug, title, summary, question, data, approach, tags, a thumbnail in assets/images/, the repository link and a build_page function that returns the page. The project then appears on the home page, on /projects and at /projects/.",
-    "token_count": 126,
+    "section": "Ask page",
+    "text": "Default: empty. Purpose: Sent as X-API-Key when the service requires one. CHATBOT_TIMEOUT. Default: 45. Purpose: Seconds to wait for an answer. A sleeping Space needs a moment to start. When the service cannot be reached the page stays up: the answer says so plainly, the status card shows Offline, and it checks again every minute.",
+    "token_count": 78,
     "position": 26
   },
   {
     "chunk_id": "portfolio-site-readme-009",
     "source": "Portfolio site README",
-    "section": "News Topic Explorer",
-    "text": "What is the news talking about, and how much coverage does each theme get?",
-    "token_count": 16,
+    "section": "Add a project",
+    "text": "Projects come from ProjectRegistry. Adding one takes two steps and no changes to the home page, the projects index or the navigation: Write a page class that extends AbstractProjectPage. It needs layout(), register_callbacks(app) and highlights(), a short list of (value, label) numbers for its card. Add one Project entry to ProjectRegistry.default_projects with a slug, title, summary, question, data, approach, tags, a thumbnail in assets/images/, the repository link and a build_page function that returns the page. The project then appears on the home page, on /projects and at /projects/.",
+    "token_count": 126,
     "position": 27
   },
   {
     "chunk_id": "portfolio-site-readme-010",
     "source": "Portfolio site README",
-    "section": "News Topic Explorer > Why it matters",
-    "text": "Newsrooms, comms teams and analysts all face the same problem: thousands of headlines a day and no time to read them. A topic model can sort them, but a table of 283 keyword lists is not an answer anyone can act on. This explorer presents the model the way a consultant would present a topic analysis: One question, answered top down. The first screen shows the share of coverage each theme gets. Every click goes one level deeper until you reach real headlines. Honest numbers. Unassigned stories (40% of this corpus) and blank rows are shown, counted and explained instead of hidden. Time aware. News moves by the hour, so every selection comes with its trend, its source mix and a rising and fading view. Human labels.",
-    "token_count": 126,
+    "section": "News Topic Explorer",
+    "text": "What is the news talking about, and how much coverage does each theme get?",
+    "token_count": 16,
     "position": 28
   },
   {
     "chunk_id": "portfolio-site-readme-011",
     "source": "Portfolio site README",
     "section": "News Topic Explorer > Why it matters",
-    "text": "Time aware. News moves by the hour, so every selection comes with its trend, its source mix and a rising and fading view. Human labels. Keyword names are a starting point. Analysts can rename them in the app and export the labels back to the pipeline.",
-    "token_count": 55,
+    "text": "Newsrooms, comms teams and analysts all face the same problem: thousands of headlines a day and no time to read them. A topic model can sort them, but a table of 283 keyword lists is not an answer anyone can act on. This explorer presents the model the way a consultant would present a topic analysis: One question, answered top down. The first screen shows the share of coverage each theme gets. Every click goes one level deeper until you reach real headlines. Honest numbers. Unassigned stories (40% of this corpus) and blank rows are shown, counted and explained instead of hidden. Time aware. News moves by the hour, so every selection comes with its trend, its source mix and a rising and fading view. Human labels.",
+    "token_count": 126,
     "position": 29
   },
   {
     "chunk_id": "portfolio-site-readme-012",
     "source": "Portfolio site README",
-    "section": "News Topic Explorer > What it shows",
-    "text": "Summary cards. What you learn: Articles in view, how many landed in a topic, how many are unassigned, how many have no text. Each card opens that group. Topic graph. What you learn: A hub for the current group and cards for its branches, each with a share bar. Click to drill down. Zoom, fit and drag are built in. Side panel. What you learn: Type, count, share of all articles and of the group you came from, the keywords behind the label, the largest topics and a searchable list of headlines tagged Representative or Sampled. Coverage over time. What you learn: Hourly, daily or weekly article counts for whatever is selected. Source mix. What you learn: Which outlets drive the selection. Rising and fading topics.",
-    "token_count": 126,
+    "section": "News Topic Explorer > Why it matters",
+    "text": "Time aware. News moves by the hour, so every selection comes with its trend, its source mix and a rising and fading view. Human labels. Keyword names are a starting point. Analysts can rename them in the app and export the labels back to the pipeline.",
+    "token_count": 55,
     "position": 30
   },
   {
     "chunk_id": "portfolio-site-readme-013",
     "source": "Portfolio site README",
     "section": "News Topic Explorer > What it shows",
-    "text": "Source mix. What you learn: Which outlets drive the selection. Rising and fading topics. What you learn: Change in share of coverage, recent window against the window before it. Click a bar to open the topic. Filters. What you learn: Date range, feed type and source. Every card, count and chart responds. Drilling into a theme. Each view opens the largest remaining group until it shows the chosen number of branches (6 by default). A single topic. The cards become example headlines. Clicking one shows the full title, summary, source, date and a link. The side panel lists headlines for the current view. A rounded search field filters that list. Trend, source mix and rising topics for the selection. How to read this.",
+    "text": "Summary cards. What you learn: Articles in view, how many landed in a topic, how many are unassigned, how many have no text. Each card opens that group. Topic graph. What you learn: A hub for the current group and cards for its branches, each with a share bar. Click to drill down. Zoom, fit and drag are built in. Side panel. What you learn: Type, count, share of all articles and of the group you came from, the keywords behind the label, the largest topics and a searchable list of headlines tagged Representative or Sampled. Coverage over time. What you learn: Hourly, daily or weekly article counts for whatever is selected. Source mix. What you learn: Which outlets drive the selection. Rising and fading topics.",
     "token_count": 126,
     "position": 31
   },
@@ -259,39 +259,39 @@
     "chunk_id": "portfolio-site-readme-014",
     "source": "Portfolio site README",
     "section": "News Topic Explorer > What it shows",
-    "text": "A rounded search field filters that list. Trend, source mix and rising topics for the selection. How to read this. Method notes and limits live one click away from every number.",
-    "token_count": 36,
+    "text": "Source mix. What you learn: Which outlets drive the selection. Rising and fading topics. What you learn: Change in share of coverage, recent window against the window before it. Click a bar to open the topic. Filters. What you learn: Date range, feed type and source. Every card, count and chart responds. Drilling into a theme. Each view opens the largest remaining group until it shows the chosen number of branches (6 by default). A single topic. The cards become example headlines. Clicking one shows the full title, summary, source, date and a link. The side panel lists headlines for the current view. A rounded search field filters that list. Trend, source mix and rising topics for the selection. How to read this.",
+    "token_count": 126,
     "position": 32
   },
   {
     "chunk_id": "portfolio-site-readme-015",
     "source": "Portfolio site README",
-    "section": "News Topic Explorer > What it shows > Key numbers from the current fit",
-    "text": "Articles. Value: 41,371 rows from 4,689 sources, last loaded Nov 18, 2026 22:48 UTC. With usable text. Value: 41,277. Assigned to a topic. Value: 24,754 (60.0% of articles with text) across 283 topics. Unassigned (topic -1). Value: 16,523 (40.0%). Missing text (topic -2). Value: 94 (0.2% of all rows). Largest themes. Value: AI and Music cluster 6,545 (15.9%); GTA and China cluster 6,488 (15.7%); Police and Shooting 4,823 (11.7%). Largest topic.",
-    "token_count": 126,
+    "section": "News Topic Explorer > What it shows",
+    "text": "A rounded search field filters that list. Trend, source mix and rising topics for the selection. How to read this. Method notes and limits live one click away from every number.",
+    "token_count": 36,
     "position": 33
   },
   {
     "chunk_id": "portfolio-site-readme-016",
     "source": "Portfolio site README",
     "section": "News Topic Explorer > What it shows > Key numbers from the current fit",
-    "text": "Largest topic. Value: Topic 0, Man and Police (crime and arrests), 1,089 articles. Fastest riser. Value: Topic 2, Gen Z set to surpass baby boomers in management roles, +1.8 points of share in the last 6 hours.",
-    "token_count": 58,
+    "text": "Articles. Value: 41,371 rows from 4,689 sources, last loaded Nov 18, 2026 22:48 UTC. With usable text. Value: 41,277. Assigned to a topic. Value: 24,754 (60.0% of articles with text) across 283 topics. Unassigned (topic -1). Value: 16,523 (40.0%). Missing text (topic -2). Value: 94 (0.2% of all rows). Largest themes. Value: AI and Music cluster 6,545 (15.9%); GTA and China cluster 6,488 (15.7%); Police and Shooting 4,823 (11.7%). Largest topic.",
+    "token_count": 126,
     "position": 34
   },
   {
     "chunk_id": "portfolio-site-readme-017",
     "source": "Portfolio site README",
-    "section": "Natural Gas Price Forecast",
-    "text": "How do forecasting models compete, qualify and serve daily natural gas predictions in production? The page presents my natural-gas-forecasting project as a forecast in production: what production forecasts today and which model serves each horizon first, then the tournament standings behind it and the backtests every score starts from. Every model is measured with the same four numbers: MAE, MAPE, WAPE and bias. The forecast target is the daily high of the front-month natural gas futures contract (Yahoo Finance NG=F), in dollars per MMBtu. Weather in major gas-demand cities and EIA weekly storage are the inputs. All of it is public data. The forecasting repository runs a daily tournament.",
-    "token_count": 126,
+    "section": "News Topic Explorer > What it shows > Key numbers from the current fit",
+    "text": "Largest topic. Value: Topic 0, Man and Police (crime and arrests), 1,089 articles. Fastest riser. Value: Topic 2, Gen Z set to surpass baby boomers in management roles, +1.8 points of share in the last 6 hours.",
+    "token_count": 58,
     "position": 35
   },
   {
     "chunk_id": "portfolio-site-readme-018",
     "source": "Portfolio site README",
     "section": "Natural Gas Price Forecast",
-    "text": "Weather in major gas-demand cities and EIA weekly storage are the inputs. All of it is public data. The forecasting repository runs a daily tournament. Each model family (Chronos-2, gradient boosting, Greykite) has a champion and a challenger in its own MLflow registry, and naive is the baseline. The champions compete in three horizon events: days 1 to 5, days 6 to 15 and days 16 to 30. A champion qualifies for an event when it beats naive there by at least 1% on blended MAE, which mixes its last 30 matured production days with its backtest MAE, and the lowest qualified score wins. When nobody qualifies, naive wins. The three winners are stitched into the production forecast.",
+    "text": "How do forecasting models compete, qualify and serve daily natural gas predictions in production? The page presents my natural-gas-forecasting project as a forecast in production: what production forecasts today and which model serves each horizon first, then the tournament standings behind it and the backtests every score starts from. Every model is measured with the same four numbers: MAE, MAPE, WAPE and bias. The forecast target is the daily high of the front-month natural gas futures contract (Yahoo Finance NG=F), in dollars per MMBtu. Weather in major gas-demand cities and EIA weekly storage are the inputs. All of it is public data. The forecasting repository runs a daily tournament.",
     "token_count": 126,
     "position": 36
   },
@@ -299,7 +299,7 @@
     "chunk_id": "portfolio-site-readme-019",
     "source": "Portfolio site README",
     "section": "Natural Gas Price Forecast",
-    "text": "When nobody qualifies, naive wins. The three winners are stitched into the production forecast. A challenger takes its family's title after 60 matured production days ahead of its champion. Top of the page. What it shows: The question, data and approach, three key findings (how the tournament runs, which models serve production and the 30 day accuracy profile), and four cards for the best model over all 30 backtest days: MAE, MAPE, WAPE and bias, each next to naive. Active predictions in production. What it shows: A scoring run dropdown, newest run first and selected by default. The chart shows the stitched production path for that run, colored by the model behind each segment.",
+    "text": "Weather in major gas-demand cities and EIA weekly storage are the inputs. All of it is public data. The forecasting repository runs a daily tournament. Each model family (Chronos-2, gradient boosting, Greykite) has a champion and a challenger in its own MLflow registry, and naive is the baseline. The champions compete in three horizon events: days 1 to 5, days 6 to 15 and days 16 to 30. A champion qualifies for an event when it beats naive there by at least 1% on blended MAE, which mixes its last 30 matured production days with its backtest MAE, and the lowest qualified score wins. When nobody qualifies, naive wins. The three winners are stitched into the production forecast.",
     "token_count": 126,
     "position": 37
   },
@@ -307,7 +307,7 @@
     "chunk_id": "portfolio-site-readme-020",
     "source": "Portfolio site README",
     "section": "Natural Gas Price Forecast",
-    "text": "The chart shows the stitched production path for that run, colored by the model behind each segment. The family champions and the naive baseline can be added as dotted lines. The run details give the run id, as-of date, scoring time, horizon and contender count, and the forecast model card shows the model serving each segment, in its color, with its role and its backtest MAE, MAPE, WAPE and bias for that horizon. Model leaderboard. What it shows: One card per event with the winning model, its role and blended MAE, and its MAPE, WAPE and bias for that horizon. Below them, a collapsible model scoreboard, closed by default.",
+    "text": "When nobody qualifies, naive wins. The three winners are stitched into the production forecast. A challenger takes its family's title after 60 matured production days ahead of its champion. Top of the page. What it shows: The question, data and approach, three key findings (how the tournament runs, which models serve production and the 30 day accuracy profile), and four cards for the best model over all 30 backtest days: MAE, MAPE, WAPE and bias, each next to naive. Active predictions in production. What it shows: A scoring run dropdown, newest run first and selected by default. The chart shows the stitched production path for that run, colored by the model behind each segment.",
     "token_count": 126,
     "position": 38
   },
@@ -315,7 +315,7 @@
     "chunk_id": "portfolio-site-readme-021",
     "source": "Portfolio site README",
     "section": "Natural Gas Price Forecast",
-    "text": "Below them, a collapsible model scoreboard, closed by default. Opened, it shows the standings for the selected horizon (days 1 to 5, 6 to 15, 16 to 30 or all days): rank, model and role, blended MAE, backtest MAE, production MAE and weight, and a status (winner, qualified, below the 1% bar, in trials, baseline). Model selection backtests. What it shows: The rolling-origin backtests used to train and tune each family, which seed every blended score. A slider over all 125 as-of dates shows the price history, the Chronos-2 forecast, a second model of your choice and the actuals, with each model's MAE for that date.",
+    "text": "The chart shows the stitched production path for that run, colored by the model behind each segment. The family champions and the naive baseline can be added as dotted lines. The run details give the run id, as-of date, scoring time, horizon and contender count, and the forecast model card shows the model serving each segment, in its color, with its role and its backtest MAE, MAPE, WAPE and bias for that horizon. Model leaderboard. What it shows: One card per event with the winning model, its role and blended MAE, and its MAPE, WAPE and bias for that horizon. Below them, a collapsible model scoreboard, closed by default.",
     "token_count": 126,
     "position": 39
   },
@@ -323,23 +323,23 @@
     "chunk_id": "portfolio-site-readme-022",
     "source": "Portfolio site README",
     "section": "Natural Gas Price Forecast",
-    "text": "price history, the Chronos-2 forecast, a second model of your choice and the actuals, with each model's MAE for that date. Below it, MAE, MAPE, WAPE and bias per family by horizon.",
-    "token_count": 49,
+    "text": "Below them, a collapsible model scoreboard, closed by default. Opened, it shows the standings for the selected horizon (days 1 to 5, 6 to 15, 16 to 30 or all days): rank, model and role, blended MAE, backtest MAE, production MAE and weight, and a status (winner, qualified, below the 1% bar, in trials, baseline). Model selection backtests. What it shows: The rolling-origin backtests used to train and tune each family, which seed every blended score. A slider over all 125 as-of dates shows the price history, the Chronos-2 forecast, a second model of your choice and the actuals, with each model's MAE for that date.",
+    "token_count": 126,
     "position": 40
   },
   {
     "chunk_id": "portfolio-site-readme-023",
     "source": "Portfolio site README",
-    "section": "Natural Gas Price Forecast > Numbers on the page",
-    "text": "Every number is computed from the snapshot when the site starts and matches the tables in the forecasting repository. Tournament as of Nov 18, 2026. No forecast has matured in production yet, so every blended MAE equals the backtest MAE. Days 1 to 5. Serving in production: Naive v1. Blended MAE: 0.2476. MAPE: 6.18%. WAPE: 6.50%. Bias: -0.0015. Days 6 to 15. Serving in production: Gradient boosting v1. Blended MAE: 0.4594. MAPE: 11.84%. WAPE: 12.05%. Bias: +0.0042. Days 16 to 30. Serving in production: Chronos-2 v1.",
-    "token_count": 126,
+    "section": "Natural Gas Price Forecast",
+    "text": "price history, the Chronos-2 forecast, a second model of your choice and the actuals, with each model's MAE for that date. Below it, MAE, MAPE, WAPE and bias per family by horizon.",
+    "token_count": 49,
     "position": 41
   },
   {
     "chunk_id": "portfolio-site-readme-024",
     "source": "Portfolio site README",
     "section": "Natural Gas Price Forecast > Numbers on the page",
-    "text": "Bias: +0.0042. Days 16 to 30. Serving in production: Chronos-2 v1. Blended MAE: 0.6459. MAPE: 16.32%. WAPE: 17.01%. Bias: -0.0496. Backtests over all 30 days, best configuration per family: Chronos-2. MAE: 0.5192. MAPE: 13.12%. WAPE: 13.65%. Bias: -0.0420. Gradient boosting. MAE: 0.5212. MAPE: 13.41%. WAPE: 13.70%. Bias: +0.0077. Naive. MAE: 0.5259.",
+    "text": "Every number is computed from the snapshot when the site starts and matches the tables in the forecasting repository. Tournament as of Nov 18, 2026. No forecast has matured in production yet, so every blended MAE equals the backtest MAE. Days 1 to 5. Serving in production: Naive v1. Blended MAE: 0.2476. MAPE: 6.18%. WAPE: 6.50%. Bias: -0.0015. Days 6 to 15. Serving in production: Gradient boosting v1. Blended MAE: 0.4594. MAPE: 11.84%. WAPE: 12.05%. Bias: +0.0042. Days 16 to 30. Serving in production: Chronos-2 v1.",
     "token_count": 126,
     "position": 42
   },
@@ -347,41 +347,49 @@
     "chunk_id": "portfolio-site-readme-025",
     "source": "Portfolio site README",
     "section": "Natural Gas Price Forecast > Numbers on the page",
-    "text": "WAPE: 13.70%. Bias: +0.0077. Naive. MAE: 0.5259. MAPE: 13.50%. WAPE: 13.82%. Bias: +0.0037. Greykite. MAE: 0.7362. MAPE: 19.36%. WAPE: 19.35%. Bias: +0.0030. The latest production run is as of Nov 18, 2026: 3.418 on day 1 (naive), 3.576 on day 10 (gradient boosting) and 3.732 on day 30 (Chronos-2).",
+    "text": "Bias: +0.0042. Days 16 to 30. Serving in production: Chronos-2 v1. Blended MAE: 0.6459. MAPE: 16.32%. WAPE: 17.01%. Bias: -0.0496. Backtests over all 30 days, best configuration per family: Chronos-2. MAE: 0.5192. MAPE: 13.12%. WAPE: 13.65%. Bias: -0.0420. Gradient boosting. MAE: 0.5212. MAPE: 13.41%. WAPE: 13.70%. Bias: +0.0077. Naive. MAE: 0.5259.",
     "token_count": 126,
     "position": 43
   },
   {
     "chunk_id": "portfolio-site-readme-026",
     "source": "Portfolio site README",
-    "section": "Natural Gas Price Forecast > The snapshot",
-    "text": "The hosted site cannot read the forecasting database, so build_forecast_cache.py copies what the page needs into cache/natgas/ (about 350 KB, committed to the repository): ForecastSnapshotBuilder opens data/natgas.db read only (mode=ro) and reads outputs/backtest_forecasts.parquet, checking its row count against the database table.",
-    "token_count": 85,
+    "section": "Natural Gas Price Forecast > Numbers on the page",
+    "text": "WAPE: 13.70%. Bias: +0.0077. Naive. MAE: 0.5259. MAPE: 13.50%. WAPE: 13.82%. Bias: +0.0037. Greykite. MAE: 0.7362. MAPE: 19.36%. WAPE: 19.35%. Bias: +0.0030. The latest production run is as of Nov 18, 2026: 3.418 on day 1 (naive), 3.576 on day 10 (gradient boosting) and 3.732 on day 30 (Chronos-2).",
+    "token_count": 126,
     "position": 44
   },
   {
     "chunk_id": "portfolio-site-readme-027",
     "source": "Portfolio site README",
     "section": "Natural Gas Price Forecast > The snapshot",
-    "text": "read only (mode=ro) and reads outputs/backtest_forecasts.parquet, checking its row count against the database table. It writes the backtest forecasts, settled prices, every prediction (the stitched production stage, each contender stage such as chronos:champion or baseline:naive, and the legacy:* rows from before the tournament), matured actuals, the two accuracy views and the tournament tables (tournament_standings, event_winners, challenger_trials, promotion_history) as parquet, plus metadata.json. A database from before the tournament gives empty tournament tables, and the page says so. A price bar loaded on its own trading day is left for the next refresh, since that session may still be trading.",
-    "token_count": 126,
+    "text": "The hosted site cannot read the forecasting database, so build_forecast_cache.py copies what the page needs into cache/natgas/ (about 350 KB, committed to the repository): ForecastSnapshotBuilder opens data/natgas.db read only (mode=ro) and reads outputs/backtest_forecasts.parquet, checking its row count against the database table.",
+    "token_count": 85,
     "position": 45
   },
   {
     "chunk_id": "portfolio-site-readme-028",
     "source": "Portfolio site README",
     "section": "Natural Gas Price Forecast > The snapshot",
-    "text": "A price bar loaded on its own trading day is left for the next refresh, since that session may still be trading. Run it again after each scoring run to pick up new predictions and actuals. Without the source folder it says so and leaves the current snapshot alone, and without a snapshot the page still renders with a short note. Nothing is scored or refit here.",
-    "token_count": 78,
+    "text": "read only (mode=ro) and reads outputs/backtest_forecasts.parquet, checking its row count against the database table. It writes the backtest forecasts, settled prices, every prediction (the stitched production stage, each contender stage such as chronos:champion or baseline:naive, and the legacy:* rows from before the tournament), matured actuals, the two accuracy views and the tournament tables (tournament_standings, event_winners, challenger_trials, promotion_history) as parquet, plus metadata.json. A database from before the tournament gives empty tournament tables, and the page says so. A price bar loaded on its own trading day is left for the next refresh, since that session may still be trading.",
+    "token_count": 126,
     "position": 46
   },
   {
     "chunk_id": "portfolio-site-readme-029",
     "source": "Portfolio site README",
+    "section": "Natural Gas Price Forecast > The snapshot",
+    "text": "A price bar loaded on its own trading day is left for the next refresh, since that session may still be trading. Run it again after each scoring run to pick up new predictions and actuals. Without the source folder it says so and leaves the current snapshot alone, and without a snapshot the page still renders with a short note. Nothing is scored or refit here.",
+    "token_count": 78,
+    "position": 47
+  },
+  {
+    "chunk_id": "portfolio-site-readme-030",
+    "source": "Portfolio site README",
     "section": "Deploying",
     "text": "The site runs on Render's Starter plan, described in render.yaml. The build installs the project, and gunicorn serves app:server on the port Render provides. Pages read only the committed caches in cache/ and cache/natgas/, so Headline Radar and the forecasting repository are not needed at runtime. Connect the GitHub repository to Render, then set CHATBOT_API_URL (and CHATBOT_API_KEY if the Ask service requires one) in the dashboard. Add ajgeiger.com as a custom domain and point its Cloudflare DNS records at the values Render shows. Render issues the certificate once the records are in place.",
     "token_count": 126,
-    "position": 47
+    "position": 48
   },
   {
     "chunk_id": "headline-radar-readme-001",
@@ -389,7 +397,7 @@
     "section": "Headline Radar",
     "text": "Headline Radar pulls live news headlines from GDELT and seven RSS feeds into a local database, then finds the topics in them with a topic model I wrote from scratch. Every 15 minutes there are thousands of new headlines. Headline Radar groups them into a few hundred readable topics, names each one with keywords, and shows how the topics relate. See the full walkthrough: Topic model notebook How to read this chart: each row on the right is a topic, with its top keywords and its number of articles. Lines join topics that use similar words. The further left two branches meet, the less alike they are, so pairs that join close to the right are the most similar.",
     "token_count": 126,
-    "position": 48
+    "position": 49
   },
   {
     "chunk_id": "headline-radar-readme-002",
@@ -397,7 +405,7 @@
     "section": "Headline Radar",
     "text": "The further left two branches meet, the less alike they are, so pairs that join close to the right are the most similar. In this run, the Ukraine and Russia topic sits next to the Gaza and Israel topic, and NFL joins college football (CFP, Notre Dame). The closest pair is crashes and injuries next to police, arrests, and charges. Stock market headlines sit beside Black Friday and iPhone deals. The chart covers 41,277 articles and 283 topics.",
     "token_count": 95,
-    "position": 49
+    "position": 50
   },
   {
     "chunk_id": "headline-radar-readme-003",
@@ -405,7 +413,7 @@
     "section": "Why it matters",
     "text": "Most organizations have more free text than anyone can read. Topic modeling turns that text into a short list of themes you can count, track, and act on. Spot new stories and market-moving themes early, as a new topic appears or grows. Track how coverage of a company, sector, or region changes from week to week. Route and triage a large stream of headlines to the right people. The engine does not know anything about news. Point it at any column of short texts and it works the same way. Good fits are support tickets, customer feedback, invoice or claim notes, and survey responses.",
     "token_count": 125,
-    "position": 50
+    "position": 51
   },
   {
     "chunk_id": "headline-radar-readme-004",
@@ -413,7 +421,7 @@
     "section": "What this shows",
     "text": "I am a Lead Applied AI Scientist. At Signature Aviation I built the enterprise AI platform, covering data engineering, forecasting, dynamic pricing, and MLOps governance. This project shows the same habits on open data. My own BERTopic-style model, not a black box. Sentence embeddings with attention-mask mean pooling, UMAP to reduce them, HDBSCAN to cluster them, and c-TF-IDF to name the topics. Each step is a small, readable method. A loader you can rerun safely. Each article id is the SHA-256 of its URL, so reloads never add duplicates. A watermark per source means each run only pulls new data. Clear handling of edge cases.",
     "token_count": 126,
-    "position": 51
+    "position": 52
   },
   {
     "chunk_id": "headline-radar-readme-005",
@@ -421,7 +429,7 @@
     "section": "What this shows",
     "text": "A watermark per source means each run only pulls new data. Clear handling of edge cases. Topic -1 means a text did not fit any topic. Topic -2 means the text was blank. The two are never mixed. Honest predictions. For each text, transform_with_status says whether it was in the training data (seen), was predicted (new), or was blank. Safe joins. TopicJoiner adds topic ids to a table without ever adding rows, and it raises an error when the data has drifted from the fitted model. Diagnostics you can check. get_fit_diagnostics shows how cluster sizes changed after identical texts were given one shared topic. The right size of tools.",
     "token_count": 126,
-    "position": 52
+    "position": 53
   },
   {
     "chunk_id": "headline-radar-readme-006",
@@ -429,7 +437,7 @@
     "section": "What this shows",
     "text": "Diagnostics you can check. get_fit_diagnostics shows how cluster sizes changed after identical texts were given one shared topic. The right size of tools. pandas and SQLite instead of Spark and a database server, because the data fits on one machine. Tested on real data. 41,277 articles became 283 topics, with 40% left as outliers. The full run took about 3.5 minutes on CPU. Some topics pick up publisher boilerplate, such as \"targeted news service\". The example texts for each topic make those easy to spot and relabel.",
     "token_count": 119,
-    "position": 53
+    "position": 54
   },
   {
     "chunk_id": "headline-radar-readme-007",
@@ -437,7 +445,7 @@
     "section": "How the topic model works",
     "text": "models/TopicModel.py works on any list of short texts. Embed each unique text with TextEmbedder (MiniLM). Reduce the embeddings to 5 dimensions with UMAP. Give identical texts the same topic. Move any topic smaller than min_topic_size to the outliers. Number topics by size, so topic 0 is the largest. Describe each topic with c-TF-IDF keywords and three example texts. Texts from the fit data get their fitted topic back. New texts are placed with HDBSCAN approximate_predict. The model only knows the data it was fit on, so refit it as new headlines arrive. TopicJoiner adds a topic_id column to a pandas DataFrame by exact text match.",
     "token_count": 126,
-    "position": 54
+    "position": 55
   },
   {
     "chunk_id": "headline-radar-readme-008",
@@ -445,7 +453,7 @@
     "section": "How the topic model works",
     "text": "TopicJoiner adds a topic_id column to a pandas DataFrame by exact text match. It never adds rows and gives blank text -2. It raises an error if one text has two topic ids, or if a text is missing from the lookup, which means the model needs a refit.",
     "token_count": 63,
-    "position": 55
+    "position": 56
   },
   {
     "chunk_id": "headline-radar-readme-009",
@@ -453,7 +461,7 @@
     "section": "Database design",
     "text": "data/headline_radar.db is a SQLite file with three tables. The schema lives in utils/storage/Database.py. The tables are linked by the source name (gdelt or rss). These links are by value only. There are no foreign key constraints. No duplicates on reload. articles.id is the SHA-256 of the URL, and inserts use INSERT OR IGNORE, so rerunning a load skips articles that are already stored. Incremental loads. watermarks keeps one high-water mark per source. The next run starts from it and only pulls new data. An audit log.",
     "token_count": 126,
-    "position": 56
+    "position": 57
   },
   {
     "chunk_id": "headline-radar-readme-010",
@@ -461,7 +469,7 @@
     "section": "Database design",
     "text": "Incremental loads. watermarks keeps one high-water mark per source. The next run starts from it and only pulls new data. An audit log. load_runs gets one row per run, with its status, counts fetched, inserted, and skipped, the high-water mark it reached, and any error. Blanks stay blank. Missing titles or descriptions are stored as NULL, and the row is kept. Zero setup. SQLite needs no server. Timestamps are stored as UTC text and the SQL is plain, so moving to Postgres later is simple.",
     "token_count": 119,
-    "position": 57
+    "position": 58
   },
   {
     "chunk_id": "headline-radar-readme-011",
@@ -469,7 +477,7 @@
     "section": "Data source notes",
     "text": "GDELT data comes from the 15-minute GKG files advertised by https://data.gdeltproject.org/gdeltv2/lastupdate.txt. Titles are read from the GKG PAGE_TITLE extras field; a precise publish time is used when PAGE_PRECISEPUBTIMESTAMP is present, otherwise the 15-minute file time. GKG does not include article descriptions, so those are stored as NULL. Files are downloaded over HTTPS; the HTTP URLs in lastupdate.txt often return 500. The very newest file listed in lastupdate can 404 for a short time and is retried on the next run.",
     "token_count": 126,
-    "position": 58
+    "position": 59
   },
   {
     "chunk_id": "headline-radar-readme-012",
@@ -477,22 +485,14 @@
     "section": "Data source notes",
     "text": "The very newest file listed in lastupdate can 404 for a short time and is retried on the next run. The GDELT DOC 2.0 API also exposes titles, but it rate-limits to one request every five seconds and, during setup, frequently returned HTTP 429 or an empty JSON object, so it is not used here. RSS feeds included here: BBC News, NPR News, CNBC Top Stories, Guardian Business, MarketWatch, NYT World, and Al Jazeera. Feeds that did not respond during setup (Yahoo Finance 404, Politico 403, CNN SSL error) were left out.",
     "token_count": 126,
-    "position": 59
+    "position": 60
   },
   {
     "chunk_id": "portfolio-site-home-page-001",
     "source": "Portfolio site home page",
     "section": "Portfolio site home page",
-    "text": "Analytics and machine learning projects by Alex Geiger, Lead Applied AI Scientist. Each project starts with a business question and ends with an answer a reader can act on, not a model score. The data pipeline, the model and the interface are all part of the work. Every number says what it counts and what it leaves out. Unassigned records, odd dates and duplicates are shown and explained rather than quietly dropped. Small, readable classes, one per file, with tests and linting. Data sources and pages plug in, so a new dataset or project does not mean a rewrite. . Senior Data Scientist there from May 2022. Each project is a working app on real data, with a short case study and method notes.",
-    "token_count": 126,
-    "position": 60
-  },
-  {
-    "chunk_id": "portfolio-site-home-page-002",
-    "source": "Portfolio site home page",
-    "section": "Portfolio site home page",
-    "text": ". Senior Data Scientist there from May 2022. Each project is a working app on real data, with a short case study and method notes. The numbers below are read from the data when the site starts. The projects here apply the same habits to open data: a clear question, careful method notes and code that is built to last. My code and competition work are on GitHub and Kaggle. WHAT YOU WILL SEE . Before that I was a data scientist at GHD and VyStar Credit Union. I hold a . This site collects projects I build on open data. Each one has a live app, a short write up and the code behind it. Read the resume → See all projects →",
-    "token_count": 126,
+    "text": "Analytics and machine learning projects by Alex Geiger, Lead Applied AI Scientist.",
+    "token_count": 15,
     "position": 61
   },
   {
@@ -507,7 +507,7 @@
     "chunk_id": "portfolio-site-project-write-ups-001",
     "source": "Portfolio site project write ups",
     "section": "Portfolio site project write ups",
-    "text": "Every project needs a unique slug. What is the news talking about, and how much coverage does each theme get? An interactive walk from 41 thousand articles down to the actual headlines, built on my own topic model. Headlines and summaries collected by Headline Radar, my news pipeline, from the GDELT global news feed and publisher RSS feeds, stored in SQLite. A BERTopic style model I wrote from scratch: MiniLM sentence embeddings, UMAP, HDBSCAN and c-TF-IDF keywords. Topics are merged into a tree by keyword similarity so the corpus can be read top down. The app only reads the fitted results; nothing is retrained.",
+    "text": "Every project needs a unique slug. Each model family is trained and tuned in rolling backtests with no look-ahead, then registered in MLflow as a champion and a challenger. Every trading morning the champions compete in three horizon events, the event winners are stitched into one production forecast, and every model is evaluated with MAE, MAPE, WAPE and bias. See which topics are getting the most attention in the news, then drill from broad themes down to the headlines behind them. Built on my own topic model of 41 thousand articles. Headlines and summaries collected by Headline Radar, my news pipeline, from the GDELT global news feed and publisher RSS feeds, stored in SQLite.",
     "token_count": 126,
     "position": 63
   },
@@ -515,8 +515,8 @@
     "chunk_id": "portfolio-site-project-write-ups-002",
     "source": "Portfolio site project write ups",
     "section": "Portfolio site project write ups",
-    "text": "The app only reads the fitted results; nothing is retrained. Each model family is trained and tuned in rolling backtests with no look-ahead, then registered in MLflow as a champion and a challenger. Every trading morning the champions compete in three horizon events, the event winners are stitched into one production forecast, and every model is evaluated with MAE, MAPE, WAPE and bias.",
-    "token_count": 82,
+    "text": "and summaries collected by Headline Radar, my news pipeline, from the GDELT global news feed and publisher RSS feeds, stored in SQLite. A BERTopic style model I wrote from scratch: MiniLM sentence embeddings, UMAP, HDBSCAN and c-TF-IDF keywords. Topics are merged into a tree by keyword similarity so the corpus can be read top down. The app only reads the fitted results; nothing is retrained.",
+    "token_count": 100,
     "position": 64
   },
   {
@@ -571,8 +571,8 @@
     "chunk_id": "portfolio-site-pages-007",
     "source": "Portfolio site pages",
     "section": "Ask",
-    "text": "The Ask page is a question box about Alex's projects and experience. Answers are written from his resume and project write ups. Visitors can ask about his work, the projects on the site, how he works, and what he would bring to a team.",
-    "token_count": 52,
+    "text": "The Ask page is a question box about Alex's projects and experience. Answers are grounded in his resume, this site and his project write ups, and the chatbot does not make up details. Visitors can ask about his work, the projects on the site, how he works, and what he would bring to a team.",
+    "token_count": 66,
     "position": 71
   },
   {

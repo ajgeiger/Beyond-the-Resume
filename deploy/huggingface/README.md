@@ -1,5 +1,5 @@
 ---
-title: RAG Chatbot
+title: Beyond the Resume
 colorFrom: gray
 colorTo: blue
 sdk: docker
@@ -8,9 +8,11 @@ pinned: false
 short_description: Answers questions about Alex Geiger's projects and experience
 ---
 
-# RAG Chatbot API
+# Beyond the Resume API
 
-This is the Space card. `scripts/push_to_space.sh` copies it over the root
+This is the Space card for the optional Hugging Face host. The main host is
+Render, which deploys every merge to `main` (see docs/deployment.md in the
+repository). This Space runs the same image. `scripts/push_to_space.sh` copies it over the root
 README.md when it uploads the repository, and Hugging Face reads the front
 matter above to build the root Dockerfile and route traffic to port 7860.
 
@@ -30,7 +32,7 @@ environment variables and are never stored in the repository.
 
 | Name | Kind | Purpose |
 | --- | --- | --- |
-| ANTHROPIC_API_KEY | secret | Claude Sonnet 5.5 writes the answers. |
+| ANTHROPIC_API_KEY | secret | Claude Sonnet 5.5 writes the answers and Claude Haiku rewrites follow ups. |
 | OPENAI_API_KEY | secret | Optional. Used when LLM_PROVIDER is openai, or when no Anthropic key is set. |
 | CHATBOT_API_KEY | secret | Optional. Callers must send it in X-API-Key. |
 | LLM_PROVIDER | variable | auto (default), anthropic, openai or fake. |

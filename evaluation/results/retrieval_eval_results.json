@@ -1,37 +1,41 @@
 {
-  "index_version": "d272655ade5d",
+  "index_version": "f52f7032b1e6",
   "model": "sentence-transformers/all-MiniLM-L6-v2",
-  "chunk_count": 50,
+  "chunk_count": 116,
   "reports": [
     {
       "label": "bm25",
       "questions": 29,
       "recall_at_k": {
-        "1": 0.7586,
-        "3": 0.9655,
-        "5": 1.0
+        "1": 0.7241,
+        "3": 0.8621,
+        "5": 0.931
       },
-      "mrr": 0.8649,
+      "mrr": 0.8086,
       "off_topic_questions": 5,
-      "off_topic_empty": 1.0,
-      "misses": []
+      "off_topic_empty": 0.8,
+      "misses": [
+        "How are sentence embeddings pooled from the transformer output?",
+        "How was the topic tree made balanced at the top level?"
+      ]
     },
     {
       "label": "dense",
       "questions": 29,
       "recall_at_k": {
-        "1": 0.7241,
-        "3": 0.7931,
-        "5": 0.8276
+        "1": 0.5517,
+        "3": 0.7586,
+        "5": 0.7931
       },
-      "mrr": 0.7598,
+      "mrr": 0.6506,
       "off_topic_questions": 5,
-      "off_topic_empty": 1.0,
+      "off_topic_empty": 0.8,
       "misses": [
         "Where did he get his master's degree?",
         "What did he study as an undergraduate?",
         "What did he work on at GHD?",
         "Give me a short summary of his background.",
+        "How are sentence embeddings pooled from the transformer output?",
         "How was the topic tree made balanced at the top level?"
       ]
     },
@@ -39,27 +43,17 @@
       "label": "hybrid",
       "questions": 29,
       "recall_at_k": {
-        "1": 0.8276,
-        "3": 0.9655,
-        "5": 1.0
+        "1": 0.6897,
+        "3": 0.8621,
+        "5": 0.931
       },
-      "mrr": 0.8937,
+      "mrr": 0.7856,
       "off_topic_questions": 5,
-      "off_topic_empty": 1.0,
-      "misses": []
-    },
-    {
-      "label": "hybrid + rerank",
-      "questions": 29,
-      "recall_at_k": {
-        "1": 0.8966,
-        "3": 1.0,
-        "5": 1.0
-      },
-      "mrr": 0.9425,
-      "off_topic_questions": 5,
-      "off_topic_empty": 1.0,
-      "misses": []
+      "off_topic_empty": 0.6,
+      "misses": [
+        "How are sentence embeddings pooled from the transformer output?",
+        "How was the topic tree made balanced at the top level?"
+      ]
     }
   ]
 }
