@@ -21,7 +21,7 @@ class RagApi:
         self.max_query_chars = runtime.settings.guardrails.max_question_chars
 
     def build(self) -> FastAPI:
-        app = FastAPI(title="RAG Chatbot", version="0.1.0", description="Answers about Alex Geiger's work.")
+        app = FastAPI(title="Beyond the Resume", version="0.1.0", description="Answers about Alex Geiger's work.")
         protected = [Depends(self.guard)]
 
         @app.get("/health", response_model=HealthResponse)
