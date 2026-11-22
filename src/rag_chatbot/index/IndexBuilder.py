@@ -20,7 +20,7 @@ class IndexBuilder:
     should force every index to rebuild.
     """
 
-    PIPELINE_VERSION = "4"
+    PIPELINE_VERSION = "5"
 
     def __init__(self, pipeline: IngestionPipeline, model: AbstractEmbeddingModel, catalog: SourceCatalog):
         self.pipeline = pipeline

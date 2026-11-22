@@ -39,12 +39,6 @@ file = "resume.pdf"
 origin = "topic-explorer-dashboard/assets/files/Alexander_Geiger_Resume.pdf"
 
 [[sources]]
-name = "Portfolio site resume page"
-kind = "python"
-file = "portfolio_site_resume.py"
-origin = "topic-explorer-dashboard/config/Resume.py"
-
-[[sources]]
 name = "Portfolio site README"
 kind = "markdown"
 file = "portfolio_site_readme.md"
@@ -55,6 +49,19 @@ name = "Headline Radar README"
 kind = "markdown"
 file = "headline_radar_readme.md"
 origin = "headline-radar/README.md"
+
+[[sources]]
+name = "Portfolio site profile"
+kind = "python"
+file = "portfolio_site_profile.py"
+origin = "topic-explorer-dashboard/config/Profile.py"
+
+[[sources]]
+name = "Portfolio site about section"
+kind = "python"
+file = "portfolio_site_home_copy.py"
+origin = "topic-explorer-dashboard/config/HomeCopy.py"
+assignments = ["ABOUT_PARAGRAPHS"]
 
 [[sources]]
 name = "Portfolio site home page"

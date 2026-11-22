@@ -17,7 +17,7 @@ class SourceFactory:
             elif spec.kind == "markdown":
                 sources.append(MarkdownSource(spec.path, spec.name, catalog.skipped_sections))
             elif spec.kind == "python":
-                sources.append(PythonTextSource(spec.path, spec.name))
+                sources.append(PythonTextSource(spec.path, spec.name, spec.assignments))
             else:
                 raise ValueError(f"Unknown source kind: {spec.kind}")
         return sources

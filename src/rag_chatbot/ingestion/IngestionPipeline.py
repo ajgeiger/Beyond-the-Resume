@@ -46,10 +46,12 @@ class IngestionPipeline:
                 self.skipped.append(str(source.path))
                 continue
             for section in source.sections():
+                header = self.cleaner.clean(section.header) if section.header else ""
+                if header:
+                    deduplicator.is_new(header)
                 cleaned = (self.cleaner.clean(paragraph) for paragraph in section.paragraphs)
                 paragraphs = tuple(text for text in cleaned if text and deduplicator.is_new(text))
                 if paragraphs:
-                    header = self.cleaner.clean(section.header) if section.header else ""
                     title = self.cleaner.clean(section.title)
                     sections.append(Section(section.source, title, paragraphs, header=header))
         return sections
